@@ -1,0 +1,13 @@
+{
+	"TOOL_CHAIN": "xilinx",
+	"Device": "xc7z020clg400-2",
+	"PRJ_NAME": {
+		"FPGA": "template"
+	},
+	"SOC_MODE": {
+		"soc": "none"
+	},
+    "HardwareLIB": {
+        "state": "virtual"
+    }
+}
