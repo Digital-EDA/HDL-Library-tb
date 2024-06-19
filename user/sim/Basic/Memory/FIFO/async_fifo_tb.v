@@ -59,8 +59,7 @@ end
 async_fifo #(
 	.DATA_WIDTH 	( DATA_WIDTH ),
 	.DEPTH      	( DEPTH      ),
-	.MODE       	( MODE       )
-)
+	.MODE       	( MODE       ))
 u_async_fifo(
 	.wr_clk  	( wr_clk   ),
 	.wr_rst  	( sys_rst  ),
@@ -71,6 +70,7 @@ u_async_fifo(
 	.rd_rst  	( sys_rst  ),
 	.rd_en   	( rd_en    ),
 	.rd_data 	( rd_data  ),
+    
 	.full    	( full     ),
 	.empty   	( empty    )
 );
