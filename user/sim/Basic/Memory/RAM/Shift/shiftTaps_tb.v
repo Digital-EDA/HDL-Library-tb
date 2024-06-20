@@ -73,9 +73,10 @@ module shiftTaps_tb();
 
 
     initial begin            
-        $dumpfile("wave.vcd");        
-        $dumpvars(0, ShiftTaps_tb);    
+        $dumpfile("shiftTaps.vcd");        
+        $dumpvars(0, shiftTaps_tb);    
         #50000 $finish;
     end
+
 
 endmodule  //TOP

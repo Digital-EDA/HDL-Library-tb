@@ -11,7 +11,7 @@ module divider_tb;
     reg input_valid;
 
     // Outputs
-    wire signed [31:0] quotient;
+    wire signed [31:0] xquotient;
     wire output_valid;
 
     // Instantiate the DUT (Device Under Test)
@@ -22,9 +22,28 @@ module divider_tb;
         .dividend(dividend),
         .divisor(divisor),
         .input_valid(input_valid),
-        .quotient(quotient),
+        .quotient(xquotient),
         .output_valid(output_valid)
     );
+
+    wire 	            ovalid;
+    wire signed [31:0]	quotient;
+
+    divider #(
+        .QUOTIENT 		( 32 		),
+        .DIVIDEND 		( 32 		),
+        .DIVISOR  		( 24 		))
+    u_divider(
+        //ports
+        .clock    		( clock    		),
+        .reset    		( reset    		),
+        .ivalid   		( ivalid   		),
+        .divisor  		( divisor  		),
+        .dividend 		( dividend 		),
+        .ovalid   		( ovalid   		),
+        .quotient 		( quotient 		)
+    );
+
 
     // Clock generation
     initial begin

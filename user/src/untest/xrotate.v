@@ -1,4 +1,4 @@
-module rotate #(
+module xrotate #(
         parameter ROTATE_LEN_SHIFT = 9,
         parameter ROTATE_SCALE_SHIFT = 11
     )(

@@ -18,17 +18,6 @@ module modulus #(
     reg [WIDTH-1:0] max;
     reg[ WIDTH-1:0] min;
 
-    // delay #(
-    //     .WIDTH(1), 
-    //     .DELAY(3)) 
-    // stb_delay_inst (
-    //     .clock(clock),
-    //     .reset(reset),
-
-    //     .idata(ivalid),
-    //     .odata(ovalid)
-    // );
-
     reg [2:0] ovalid_buf;
 
     always @(posedge clock or posedge reset) begin
@@ -41,9 +30,6 @@ module modulus #(
     end
     assign ovalid = ovalid_buf[2];
 
-    // http://dspguru.com/dsp/tricks/magnitude-estimator
-    // alpha = 1, beta = 1/4
-    // avg err 0.006
     always @(posedge clock or posedge reset) begin
         if (reset) begin
             modulus <= 0;

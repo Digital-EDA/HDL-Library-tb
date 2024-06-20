@@ -21,13 +21,6 @@ module shiftTaps #(
     reg [WIDTH-1:0] ram [SHIFT-1:0];
     reg [WIDTH-1:0] odata;
 
-    always @(posedge clock or posedge reset) begin
-        if (ivalid) begin
-            ram[count] <= shiftin;
-            odata <= ram[count];
-        end
-    end
-
     integer i;
     always @(posedge clock or posedge reset) begin
         if (reset) begin
@@ -42,9 +35,12 @@ module shiftTaps #(
         end 
         else begin            
             if (ivalid) begin
+                ram[count] <= shiftin;
+                odata <= ram[count];
                 count <= count + 1;
                 if (count == (SHIFT-1)) begin
                     done <= 1;
+                    count <= 0;
                 end
                 valid <= done;
             end 

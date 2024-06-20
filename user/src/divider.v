@@ -1,18 +1,18 @@
 module divider #(
-    parameter QUOTIENT = 32,
-    parameter DIVIDEND = 32,
-    parameter DIVISOR = 24
-) (
-    input clock,
-    input reset,
+        parameter QUOTIENT = 32,
+        parameter DIVIDEND = 32,
+        parameter DIVISOR = 24
+    ) (
+        input clock,
+        input reset,
 
-    input ivalid,
-    input signed [DIVIDEND-1:0] dividend,
-    input signed [DIVISOR-1:0] divisor,
+        input                            ivalid,
+        input signed [DIVISOR-1:0]       divisor,
+        input signed [DIVIDEND-1:0]      dividend,
 
-    output reg ovalid,
-    output reg signed [QUOTIENT-1:0] quotient
-);
+        output reg                       ovalid,
+        output reg signed [QUOTIENT-1:0] quotient
+    );
 
     // Pipeline registers
     reg signed [DIVIDEND-1:0] dividend_reg [0:5];

@@ -60,29 +60,26 @@ module cmplMult #(
             outi <= 0;
         end
         else begin
-            if (ivalid) begin                
-                ab_rr <= dataa_r * datab_r;
-                ab_ii <= dataa_i * datab_i;
-                ab_ri <= dataa_r * datab_i;
-                ab_ir <= dataa_i * datab_r;
-
-                outr <= ab_rr - ab_ii;
-                outi <= ab_ri + ab_ir;
-            end
+            ab_rr <= dataa_r * datab_r;
+            ab_ii <= dataa_i * datab_i;
+            ab_ri <= dataa_r * datab_i;
+            ab_ir <= dataa_i * datab_r;
+            outr <= ab_rr - ab_ii;
+            outi <= ab_ri + ab_ir;
         end
     end
 
-    reg [3:0] ovalid_buf;
+    reg [1:0] ovalid_buf;
 
     always @(posedge clock or posedge reset) begin
         if (reset) begin
             ovalid_buf <= 0;
         end 
         else begin    
-            ovalid_buf <= {ovalid_buf[2:0], ivalid};
+            ovalid_buf <= {ovalid_buf[0], ivalid};
         end
     end
-    assign ovalid = ovalid_buf[3];
+    assign ovalid = ovalid_buf[1];
 
     assign result_r = outr[REAL_WIDTH - SCALE_FACTOR : END_INDEX_R - SCALE_FACTOR];
     assign result_i = outi[IMGN_WIDTH - SCALE_FACTOR : END_INDEX_I - SCALE_FACTOR];
