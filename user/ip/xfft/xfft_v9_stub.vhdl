@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Sat Jun 15 17:07:20 2024
+-- Date        : Sat Jun 22 13:31:55 2024
 -- Host        : LAPTOP-4156P8SE running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
---               d:/Project/FPGA/Design/TCL_project/Prj/Communication/user/ip/xfft/xfft_v9_stub.vhdl
+--               d:/Project/FPGA/Design/TCL_project/Sim/library_sim/user/ip/xfft/xfft_v9_stub.vhdl
 -- Design      : xfft_v9
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-2

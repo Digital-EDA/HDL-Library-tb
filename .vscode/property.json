@@ -10,7 +10,9 @@
 	"HardwareLIB": {
 		"state": "virtual",
 		"common": [
-			"Basic/Memory/SRAM"
+			"Basic/Memory/SRAM",
+			"Apply/com/DSP/FFT/Flow",
+			"Basic/Math/Advance/cmplMult.v"
 		]
 	}
 }

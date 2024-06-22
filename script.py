@@ -1,6 +1,7 @@
 import argparse
 import os
 import subprocess
+import sys
 
 PATH = "C:/Users/sterben/.vscode/extensions/sterben.fpga-support-0.2.6/lib/com/Hardware/"
 
@@ -44,8 +45,14 @@ def delete_verilog_file(file_path):
 
 def push_to_github(commit_message):
     try:
+        try:
+            os.chdir(PATH)
+            print(f"Changed directory to {PATH}")
+        except FileNotFoundError as e:
+            print(f"Error: {e}")
+            sys.exit(1)
         # Add file to git
-        subprocess.run(["git", "add ."], check=True)
+        subprocess.run(["git", "add", "."], check=True, text=True, capture_output=True)
         # Commit changes
         subprocess.run(["git", "commit", "-m", commit_message], check=True)
         # Push to GitHub
@@ -74,8 +81,8 @@ def main():
     elif args.remove:
         delete_verilog_file(args.remove)
     elif args.push:
-        file_path, repo_url, commit_message = args.push
-        push_to_github(file_path, repo_url, commit_message)
+        commit_message = args.push
+        push_to_github(commit_message)
     else:
         print("No valid arguments provided. Use -h for help.")
 
