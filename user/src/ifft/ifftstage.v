@@ -121,9 +121,21 @@ module	fftstage(i_clk, i_reset, i_ce, i_sync, i_data, o_data, o_sync);
 
 	reg	[(LGSPAN):0]		iaddr;
 	reg	[(2*IWIDTH-1):0]	imem	[0:((1<<LGSPAN)-1)];
+    integer i;
+    initial begin
+       for (i = 0; i<(1<<LGSPAN); i=i+1) begin
+            imem[i] = 0;
+        end
+    end
 
 	reg	[LGSPAN:0]		oaddr;
 	reg	[(2*OWIDTH-1):0]	omem	[0:((1<<LGSPAN)-1)];
+    integer m;
+    initial begin
+       for (m = 0; m<(1<<LGSPAN); m=m+1) begin
+            omem[m] = 0;
+        end
+    end
 
 	initial wait_for_sync = 1'b1;
 	initial iaddr = 0;

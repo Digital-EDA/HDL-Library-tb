@@ -8,8 +8,8 @@
 
 module FFT_IFFT_tb();
 
-    localparam FFT_IFFT = 1;
-    localparam SCALE_FACTOR = 1;
+    localparam FFT_IFFT = 0;
+    localparam SCALE_FACTOR = 2;
     localparam FFT_STAGE = 6;
     localparam CPMULT_DLY = 2;
     localparam DATA_WIDTH = 16;
@@ -61,7 +61,7 @@ module FFT_IFFT_tb();
                 iImag <= Iimag_r[index];
             end
         end
-        ien = 0;
+        #40 ien = 0;
     end
 
     FFT_IFFT #(
@@ -104,7 +104,7 @@ module FFT_IFFT_tb();
     xfft_v9 dft_inst (
         .aclk(iclk),       // input wire aclk
         .aresetn(rstn),                                               
-        .s_axis_config_tdata({7'b0, 1'b1}),                         
+        .s_axis_config_tdata({7'b0, FFT_IFFT}),                         
         .s_axis_config_tvalid(1'b1),                               
         .s_axis_config_tready(s_axis_config_tready),   
         .s_axis_data_tdata({iImag, iReal}),                   
@@ -123,6 +123,20 @@ module FFT_IFFT_tb();
         .event_data_out_channel_halt(event_data_out_channel_halt)
     );
 
+    wire [15:0] ifft_ore;
+    wire [15:0] ifft_oim;
+    wire 	o_sync;
+
+    ifftmain u_ifftmain(
+        //ports
+        .i_clk    		( iclk    		        ),
+        .i_reset  		( ~rstn  		        ),
+        .i_ce     		( ien     		        ),
+        .i_sample 		( {iReal, iImag}        ),
+        .o_result 		( {ifft_ore, ifft_oim}  ),
+        .o_sync   		( o_sync   		        )
+    );
+
     always @(posedge iclk) begin
         if (rstn & oen) begin
             $fdisplay(owner, "%d, %d", $signed(oReal), $signed(oImag));
@@ -136,7 +150,7 @@ module FFT_IFFT_tb();
     end
 
     initial begin
-        $dumpfile("D:/Project/FPGA/Design/TCL_project/Sim/library_sim/user/sim/Apply/DSP/FFT/FFT_IFFT.vcd");        
+        $dumpfile("D:/Project/FPGA/Design/TCL_project/Sim/library_sim/user/sim/Apply/DSP/FFT/IFFT.vcd");        
         $dumpvars(0, FFT_IFFT_tb); 
     end
 
