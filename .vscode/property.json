@@ -11,8 +11,10 @@
 		"state": "virtual",
 		"common": [
 			"Basic/Memory/SRAM",
-			"Apply/com/DSP/FFT/Flow",
-			"Basic/Math/Advance/cmplMult.v"
+			"Basic/Math/Advance/Complex/cmplMult.v",
+            "Basic/Math/Advance/Complex/cmplAdsu.v",
+			"Basic/Math/Advance/FFT/Flow",
+			"Apply/Comm/FEC"
 		]
 	}
 }

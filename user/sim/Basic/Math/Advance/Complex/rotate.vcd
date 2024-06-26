@@ -1,0 +1,841 @@
+$date
+   Fri Jun 21 00:21:08 2024
+$end
+$version
+  2018.3
+$end
+$timescale
+  1ps
+$end
+$scope module rotate_tb $end
+$var reg 1 ! clock $end
+$var reg 1 " enable $end
+$var reg 1 # reset $end
+$var reg 16 $ in_i [15:0] $end
+$var reg 16 % in_q [15:0] $end
+$var reg 16 & phase [15:0] $end
+$var reg 1 ' input_valid $end
+$var reg 32 ( rot_data [31:0] $end
+$var wire 9 ) xrot_addr [8:0] $end
+$var wire 16 * xout_i [15:0] $end
+$var wire 16 + xout_q [15:0] $end
+$var wire 1 , xoutput_valid $end
+$var wire 9 - rot_addr [8:0] $end
+$var wire 1 . ovalid $end
+$var wire 16 / out_i [15:0] $end
+$var wire 16 0 out_q [15:0] $end
+$var parameter 32 1 ROTATE_LEN_SHIFT [31:0] $end
+$var parameter 32 2 ROTATE_SCALE_SHIFT [31:0] $end
+$scope module u_xrotate $end
+$var wire 1 3 clock $end
+$var wire 1 4 enable $end
+$var wire 1 5 reset $end
+$var wire 16 6 in_i [15:0] $end
+$var wire 16 7 in_q [15:0] $end
+$var wire 16 8 phase [15:0] $end
+$var wire 1 9 input_valid $end
+$var wire 9 ) rot_addr [8:0] $end
+$var wire 32 : rot_data [31:0] $end
+$var wire 16 * out_i [15:0] $end
+$var wire 16 + out_q [15:0] $end
+$var wire 1 , output_valid $end
+$var reg 16 ; phase_delayed [15:0] $end
+$var reg 16 < phase_abs [15:0] $end
+$var reg 3 = quadrant [2:0] $end
+$var reg 3 > quadrant_delayed [2:0] $end
+$var wire 16 ? in_i_delayed [15:0] $end
+$var wire 16 @ in_q_delayed [15:0] $end
+$var reg 16 A actual_phase [15:0] $end
+$var wire 16 B raw_rot_i [15:0] $end
+$var wire 16 C raw_rot_q [15:0] $end
+$var reg 16 D rot_i [15:0] $end
+$var reg 16 E rot_q [15:0] $end
+$var wire 1 F mult_in_stb $end
+$var wire 32 G p_i [31:0] $end
+$var wire 32 H p_q [31:0] $end
+$var integer 32 I i $end
+$var parameter 32 J ROTATE_LEN_SHIFT [31:0] $end
+$var parameter 32 K ROTATE_SCALE_SHIFT [31:0] $end
+$var parameter 32 L PI [31:0] $end
+$var parameter 32 M DOUBLE_PI [31:0] $end
+$var parameter 32 N PI_2 [31:0] $end
+$var parameter 32 O PI_4 [31:0] $end
+$var parameter 32 P PI_3_4 [31:0] $end
+$scope module in_delay_inst $end
+$var wire 1 3 clock $end
+$var wire 1 5 reset $end
+$var wire 32 Q idata [31:0] $end
+$var wire 32 R odata [31:0] $end
+$var integer 32 S i $end
+$var parameter 32 T WIDTH [31:0] $end
+$var parameter 32 U DELAY [31:0] $end
+$upscope $end
+$scope module mult_delay_inst $end
+$var wire 1 3 clock $end
+$var wire 1 5 reset $end
+$var wire 1 9 idata [0:0] $end
+$var wire 1 F odata [0:0] $end
+$var integer 32 V i $end
+$var parameter 32 W WIDTH [31:0] $end
+$var parameter 32 X DELAY [31:0] $end
+$upscope $end
+$scope module mult_inst $end
+$var wire 1 3 clock $end
+$var wire 1 4 enable $end
+$var wire 1 5 reset $end
+$var wire 16 ? a_i [15:0] $end
+$var wire 16 @ a_q [15:0] $end
+$var wire 16 Y b_i [15:0] $end
+$var wire 16 Z b_q [15:0] $end
+$var wire 1 F input_valid $end
+$var reg 32 [ p_i [31:0] $end
+$var reg 32 \ p_q [31:0] $end
+$var wire 1 , output_valid $end
+$var reg 4 ] delay [3:0] $end
+$var reg 16 ^ ar [15:0] $end
+$var reg 16 _ ai [15:0] $end
+$var reg 16 ` br [15:0] $end
+$var reg 16 a bi [15:0] $end
+$var wire 32 b prod_i [31:0] $end
+$var wire 32 c prod_q [31:0] $end
+$var wire 32 d s_axis_a_tdata [31:0] $end
+$var wire 32 e s_axis_b_tdata [31:0] $end
+$var wire 64 f m_axis_dout_tdata [63:0] $end
+$var wire 1 g m_axis_dout_tvalid $end
+$var parameter 32 h DELAY [31:0] $end
+$scope module mult_inst $end
+$var wire 1 i aclk $end
+$var wire 1 j s_axis_a_tvalid $end
+$var wire 32 k s_axis_a_tdata [31:0] $end
+$var wire 1 l s_axis_b_tvalid $end
+$var wire 32 m s_axis_b_tdata [31:0] $end
+$var wire 1 n m_axis_dout_tvalid $end
+$var wire 64 o m_axis_dout_tdata [63:0] $end
+$upscope $end
+$scope module stb_delay_inst $end
+$var wire 1 3 clock $end
+$var wire 1 5 reset $end
+$var wire 1 F idata [0:0] $end
+$var wire 1 , odata [0:0] $end
+$var integer 32 p i $end
+$var parameter 32 q WIDTH [31:0] $end
+$var parameter 32 r DELAY [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module u_rotate $end
+$var wire 1 s clock $end
+$var wire 1 t reset $end
+$var wire 16 u phase [15:0] $end
+$var wire 32 v rot_data [31:0] $end
+$var wire 9 - rot_addr [8:0] $end
+$var wire 1 w ivalid $end
+$var wire 16 x in_i [15:0] $end
+$var wire 16 y in_q [15:0] $end
+$var wire 1 . ovalid $end
+$var wire 16 / out_i [15:0] $end
+$var wire 16 0 out_q [15:0] $end
+$var reg 16 z phase_buf [15:0] $end
+$var reg 16 { phase_abs [15:0] $end
+$var reg 16 | phase_act [15:0] $end
+$var reg 3 } quadrant [2:0] $end
+$var reg 3 ~ quadrant_buf [2:0] $end
+$var wire 32 !! p_i [31:0] $end
+$var wire 32 "! p_q [31:0] $end
+$var reg 16 #! rot_i [15:0] $end
+$var reg 16 $! rot_q [15:0] $end
+$var wire 16 %! raw_rot_i [15:0] $end
+$var wire 16 &! raw_rot_q [15:0] $end
+$var wire 1 '! mvalid $end
+$var wire 16 (! in_i_buf [15:0] $end
+$var wire 16 )! in_q_buf [15:0] $end
+$var parameter 32 *! ROTATE_WIDTH [31:0] $end
+$var parameter 32 +! ROTATE_SCALE [31:0] $end
+$var parameter 32 ,! OPI [31:0] $end
+$var parameter 32 -! DPI [31:0] $end
+$var parameter 32 .! HPI [31:0] $end
+$var parameter 32 /! QPI [31:0] $end
+$var parameter 32 0! TQPI [31:0] $end
+$scope module u_shiftTaps $end
+$var wire 1 s clock $end
+$var wire 1 t reset $end
+$var wire 1 w ivalid $end
+$var wire 32 1! shiftin [31:0] $end
+$var wire 1 '! ovalid $end
+$var wire 32 2! shiftout [31:0] $end
+$var reg 1 3! done $end
+$var reg 1 4! valid $end
+$var reg 2 5! count [1:0] $end
+$var reg 32 6! odata [31:0] $end
+$var integer 32 7! i $end
+$var parameter 32 8! WIDTH [31:0] $end
+$var parameter 32 9! SHIFT [31:0] $end
+$upscope $end
+$scope module u_cmplMult $end
+$var wire 1 s clock $end
+$var wire 1 t reset $end
+$var wire 1 '! ivalid $end
+$var wire 16 (! dataa_r [15:0] $end
+$var wire 16 )! dataa_i [15:0] $end
+$var wire 16 :! datab_r [15:0] $end
+$var wire 16 ;! datab_i [15:0] $end
+$var wire 1 . ovalid $end
+$var wire 32 !! result_r [31:0] $end
+$var wire 32 "! result_i [31:0] $end
+$var reg 33 <! outr [32:0] $end
+$var reg 33 =! outi [32:0] $end
+$var reg 32 >! ab_rr [31:0] $end
+$var reg 32 ?! ab_ii [31:0] $end
+$var reg 32 @! ab_ri [31:0] $end
+$var reg 32 A! ab_ir [31:0] $end
+$var reg 2 B! ovalid_buf [1:0] $end
+$var parameter 32 C! SCALE_FACTOR [31:0] $end
+$var parameter 32 D! REAL_WIDTH_A [31:0] $end
+$var parameter 32 E! IMGN_WIDTH_A [31:0] $end
+$var parameter 32 F! REAL_WIDTH_B [31:0] $end
+$var parameter 32 G! IMGN_WIDTH_B [31:0] $end
+$var parameter 32 H! REAL_WIDTH_O [31:0] $end
+$var parameter 32 I! IMGN_WIDTH_O [31:0] $end
+$var parameter 32 J! AB_RR_WIDTH [31:0] $end
+$var parameter 32 K! AB_II_WIDTH [31:0] $end
+$var parameter 32 L! AB_RI_WIDTH [31:0] $end
+$var parameter 32 M! AB_IR_WIDTH [31:0] $end
+$var parameter 32 N! REAL_WIDTH [31:0] $end
+$var parameter 32 O! IMGN_WIDTH [31:0] $end
+$var parameter 32 P! END_INDEX_R [31:0] $end
+$var parameter 32 Q! END_INDEX_I [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+b0 !!
+0"
+b0 "!
+1#
+b0 #!
+b0 $
+b0 $!
+b0 %
+b0 %!
+b0 &
+b0 &!
+0'
+0'!
+b0 (
+b0 (!
+bx )
+b0 )!
+bx *
+b1001 *!
+bx +
+b1011 +!
+x,
+b11001001000 ,!
+b0 -
+b110010010000 -!
+0.
+b1100100100 .!
+b0 /
+b110010010 /!
+b0 0
+b10010110110 0!
+b1001 1
+b0 1!
+b1011 2
+b0 2!
+03
+03!
+04
+04!
+15
+b0 5!
+b0 6
+b0 6!
+b0 7
+b11 7!
+b0 8
+b100000 8!
+09
+b11 9!
+b0 :
+b0 :!
+bx ;
+b0 ;!
+bx <
+b0 <!
+bx =
+b0 =!
+bx >
+b0 >!
+bx ?
+b0 ?!
+bx @
+b0 @!
+bx A
+b0 A!
+b0 B
+b0 B!
+b0 C
+b0 C!
+bx D
+b10000 D!
+bx E
+b10000 E!
+xF
+b10000 F!
+bx G
+b10000 G!
+bx H
+b100000 H!
+bx I
+b100000 I!
+b1001 J
+b100000 J!
+b1011 K
+b100000 K!
+b11001001000 L
+b100000 L!
+b110010010000 M
+b100000 M!
+b1100100100 N
+b100000 N!
+b110010010 O
+b100000 O!
+b10010110110 P
+b1 P!
+b0 Q
+b1 Q!
+bx R
+bx S
+b100000 T
+b100 U
+bx V
+b1 W
+b100 X
+bx Y
+bx Z
+bx [
+bx \
+bx ]
+bx ^
+bx _
+bx `
+bx a
+bx b
+bx c
+bx d
+bx e
+bx f
+0g
+b100 h
+0i
+xj
+bx k
+xl
+bx m
+0n
+bx o
+bx p
+b1 q
+b101 r
+0s
+1t
+b0 u
+b0 v
+0w
+b0 x
+b0 y
+b0 z
+b0 {
+b0 |
+b0 }
+b0 ~
+$end
+#100
+b0 b
+b0 c
+b0 f
+b0 o
+#5000
+1!
+b0 )
+b0 *
+b0 +
+0,
+13
+b11 7!
+b0 ;
+b0 <
+b0 ?
+b0 @
+b0 A
+b0 D
+b0 E
+0F
+b0 G
+b0 H
+b0 R
+b100 S
+b100 V
+b0 Y
+b0 Z
+b0 [
+b0 \
+b0 ]
+b0 ^
+b0 _
+b0 `
+b0 a
+b0 d
+b0 e
+1i
+0j
+b0 k
+0l
+b0 m
+b101 p
+1s
+#10000
+0!
+03
+0i
+0s
+#15000
+1!
+13
+b11 7!
+b100 S
+b100 V
+1i
+b101 p
+1s
+#20000
+0!
+1"
+0#
+b1 $
+b0 %
+b101101010000010 %!
+b101101100000 &
+b101101010000010 &!
+1'
+b1011010100000100101101010000010 (
+b10000000000000000 1!
+03
+14
+05
+b1 6
+b101101100000 8
+19
+b1011010100000100101101010000010 :
+b101101010000010 B
+b101101010000010 C
+b10000000000000000 Q
+0i
+0s
+0t
+b101101100000 u
+b1011010100000100101101010000010 v
+1w
+b1 x
+#25000
+1!
+b101101010000010 #!
+b101101010000010 $!
+13
+b1 5!
+b101101010000010 :!
+b101101100000 ;
+b101101010000010 ;!
+b101101100000 <
+b0 =
+b100 S
+b100 V
+xg
+1i
+xn
+b101 p
+1s
+b101101100000 z
+b101101100000 {
+#25100
+bx b
+bx c
+bx f
+bx o
+#30000
+0!
+03
+0i
+0s
+#35000
+1!
+b11101000 )
+bx *
+bx +
+b11101000 -
+13
+b10 5!
+b11 =
+b0 >
+b1111101011101000 A
+bx G
+bx H
+b100 S
+b100 V
+bx [
+bx \
+0g
+1i
+0n
+b101 p
+1s
+b1111101011101000 |
+b11 }
+#35100
+b0 b
+b0 c
+b0 f
+b0 o
+#40000
+0!
+03
+0i
+0s
+#45000
+1!
+b0 *
+b0 +
+13
+13!
+b0 5!
+b11 >
+b101101010000010 D
+b101101010000010 E
+b0 G
+b0 H
+b100 S
+b100 V
+b101101010000010 Y
+b101101010000010 Z
+b0 [
+b0 \
+1i
+b101 p
+1s
+b11 ~
+#50000
+0!
+03
+0i
+0s
+#55000
+1!
+b1010010101111110 #!
+1'!
+b1 (!
+b0 )!
+b10000000000000000 2!
+13
+14!
+b1 5!
+b10000000000000000 6!
+b1010010101111110 :!
+b1 ?
+b0 @
+b1010010101111110 D
+1F
+b10000000000000000 R
+b100 S
+b100 V
+b1010010101111110 Y
+b101101010000010 `
+b101101010000010 a
+b1011010100000100101101010000010 e
+1i
+1j
+1l
+b1011010100000100101101010000010 m
+b101 p
+1s
+#60000
+0!
+b0 $
+b1 %
+b0 %!
+b1011011000000 &
+b1000000000000000 &!
+b1000000000000000 (
+b1 1!
+03
+b0 6
+b1 7
+b1011011000000 8
+b1000000000000000 :
+b0 B
+b1000000000000000 C
+b1 Q
+0i
+0s
+b1011011000000 u
+b1000000000000000 v
+b0 x
+b1 y
+#65000
+1!
+b0 #!
+b1000000000000000 $!
+13
+b10 5!
+b0 :!
+b1011011000000 ;
+b1000000000000000 ;!
+b1011011000000 <
+b11111111111111111010010101111110 >!
+b101101010000010 @!
+b1 B!
+b0 D
+b1000000000000000 E
+b100 S
+b100 V
+b0 Y
+b1000000000000000 Z
+b1 ^
+b1010010101111110 `
+b1 d
+b1011010100000101010010101111110 e
+1i
+b1 k
+b1011010100000101010010101111110 m
+b101 p
+1s
+b1011011000000 z
+b1011011000000 {
+#70000
+0!
+03
+0i
+0s
+#75000
+1!
+b11111111111111111101001010111111 !!
+b10110101000001 "!
+b110001000 )
+b110001000 -
+1.
+b1111111111111010 /
+b101 0
+13
+b0 5!
+b111111111111111111010010101111110 <!
+b101101010000010 =!
+b0 >!
+b11111111111111111000000000000000 @!
+b1110111110001000 A
+b11 B!
+b100 S
+b100 V
+b0 `
+b1000000000000000 a
+b10000000000000000000000000000000 e
+1i
+b10000000000000000000000000000000 m
+b101 p
+1s
+b1110111110001000 |
+#80000
+0!
+03
+0i
+0s
+#85000
+1!
+b0 !!
+b11111111111111111100000000000000 "!
+b0 /
+b1111111111111000 0
+13
+b1 5!
+b0 <!
+b111111111111111111000000000000000 =!
+b100 S
+b100 V
+1g
+1i
+1n
+b101 p
+1s
+#90000
+0!
+03
+0i
+0s
+#95000
+1!
+b0 (!
+b1 )!
+b1 2!
+13
+b10 5!
+b1 6!
+b0 ?
+b1 @
+b1 R
+b100 S
+b100 V
+1i
+b101 p
+1s
+#95100
+b11111111111111111101001010111111 b
+b10110101000001 c
+b1011010100000111111111111111111101001010111111 f
+b1011010100000111111111111111111101001010111111 o
+#100000
+0!
+b1 $
+b1 %
+b101101010000010 %!
+b1111010010100000 &
+b1010010101111110 &!
+b1011010100000101010010101111110 (
+b10000000000000001 1!
+03
+b1 6
+b1111010010100000 8
+b1011010100000101010010101111110 :
+b101101010000010 B
+b1010010101111110 C
+b10000000000000001 Q
+0i
+0s
+b1111010010100000 u
+b1011010100000101010010101111110 v
+b1 x
+#105000
+1!
+b1010010101111110 #!
+b1010010101111110 $!
+b1111111111111010 *
+b101 +
+1,
+13
+b0 5!
+b1010010101111110 :!
+b1111010010100000 ;
+b1010010101111110 ;!
+b101101100000 <
+b11111111111111111000000000000000 ?!
+b0 @!
+b1010010101111110 D
+b1010010101111110 E
+b11111111111111111101001010111111 G
+b10110101000001 H
+b100 S
+b100 V
+b1010010101111110 Y
+b1010010101111110 Z
+b11111111111111111101001010111111 [
+b10110101000001 \
+b0 ^
+b1 _
+b10000000000000000 d
+1i
+b10000000000000000 k
+b101 p
+1s
+b1111010010100000 z
+b101101100000 {
+#105100
+b0 b
+b11111111111111111100000000000000 c
+b1111111111111111110000000000000000000000000000000000000000000000 f
+b1111111111111111110000000000000000000000000000000000000000000000 o
+#110000
+0!
+03
+0i
+0s
+#115000
+1!
+b100000000000000 !!
+b0 "!
+b11101000 )
+b0 *
+b1111111111111000 +
+b11101000 -
+b1000 /
+b0 0
+13
+b1 5!
+b1000000000000000 <!
+b111 =
+b0 =!
+b11111111111111111010010101111110 ?!
+b1111101011101000 A
+b11111111111111111010010101111110 A!
+b0 G
+b11111111111111111100000000000000 H
+b100 S
+b100 V
+b0 [
+b11111111111111111100000000000000 \
+b1010010101111110 `
+b1010010101111110 a
+b10100101011111101010010101111110 e
+1i
+b10100101011111101010010101111110 m
+b101 p
+1s
+b1111101011101000 |
+b111 }
+#120000
+0!
+03
+0i
+0s
+#125000
+1!
+b10110101000001 !!
+b11111111111111111101001010111111 "!
+b101 /
+b1111111111111010 0
+13
+b10 5!
+b101101010000010 <!
+b111111111111111111010010101111110 =!
+b111 >
+b100 S
+b100 V
+1i
+b101 p
+1s
+b111 ~
+#130000
+0!
+03
+0i
+0s
+#135000
+1!
+b101101010000010 $!
+b1 (!
+b1 )!
+b10000000000000001 2!
+13
+b0 5!
+b10000000000000001 6!
+b101101010000010 ;!
+b1 ?
+b1 @
+b101101010000010 E
+b10000000000000001 R
+b100 S
+b100 V
+b101101010000010 Z
+1i
+b101 p
+1s
