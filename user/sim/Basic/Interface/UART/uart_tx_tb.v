@@ -1,7 +1,7 @@
 module uart_tx_tb();
     
     reg        CLK_50M;
-    reg        RST_N;
+    reg        RST;
     reg [7:0]  data;
     reg        valid;
         
@@ -9,7 +9,7 @@ module uart_tx_tb();
         .data          (data),
         .valid         (valid),
         .clk           (CLK_50M),
-        .rst_n         (RST_N),
+        .rst           (RST),
         .tx            (),
         .ready         ()
     );
@@ -20,12 +20,12 @@ module uart_tx_tb();
     
     initial begin
         CLK_50M <= 1'b0;
-        RST_N   <= 1'b0;
+        RST     <= 1'b1;
         data    <= 8'b0;
-        valid <= 1'b0;
+        valid   <= 1'b0;
         #100
-        RST_N   <= 1'b1;
-        valid <= 1'b1;
+        RST     <= 1'b0;
+        valid   <= 1'b1;
         data    <= 8'b10111001;
         #20
         valid <= 1'b0;

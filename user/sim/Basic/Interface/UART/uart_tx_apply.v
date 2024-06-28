@@ -1,6 +1,6 @@
 module uart_tx_apply(
         input               clk,
-        input               rst_n,
+        input               rst,
         output              tx
     );
     
@@ -17,15 +17,15 @@ module uart_tx_apply(
         .data       (data),
         .valid      (valid),
         .clk        (clk),
-        .rst_n      (rst_n),
+        .rst        (rst),
         .tx         (tx),
         .ready      (ready)
     );
 
     defparam u1_uart_tx.TX_BAUD = 115200;
 
-    always @(posedge clk or negedge rst_n) begin
-        if(!rst_n) begin
+    always @(posedge clk or posedge rst) begin
+        if(rst) begin
             cnt_10ms    <= 0;
             valid       <= 0;
             data        <= 8'b0;

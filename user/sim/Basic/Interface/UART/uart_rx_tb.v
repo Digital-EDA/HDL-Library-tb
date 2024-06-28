@@ -1,7 +1,7 @@
 module uart_rx_tb();
     
     reg        CLK_50M;
-    reg        RST_N;
+    reg        RST;
     
     wire [7:0] data;    
     reg        rx;
@@ -14,7 +14,7 @@ module uart_rx_tb();
         .BAUD_CNT  (50)
     ) u1_uart_rx (
         .clk        (CLK_50M),
-        .rst_n      (RST_N),
+        .rst        (RST),
         .rx         (rx),
         .data       (data),
         .ready      (ready)
@@ -23,12 +23,12 @@ module uart_rx_tb();
     always #10 CLK_50M  <= ~CLK_50M;
     
     initial begin
-        CLK_50M <= 1'b0;
-        RST_N   <= 1'b0;
-        rx <= 1'b1;
-        test_data <= 8'h0;
+        CLK_50M     <= 1'b0;
+        RST         <= 1'b1;
+        rx          <= 1'b1;
+        test_data   <= 8'h0;
         #100
-        RST_N   <= 1'b1;
+        RST         <= 1'b0;
         #20
         test_data <= 8'haf;
         #1000
