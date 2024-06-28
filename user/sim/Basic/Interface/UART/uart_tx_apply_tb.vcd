@@ -1,5 +1,5 @@
 $date
-	Sun Jun 23 23:24:41 2024
+	Fri Jun 28 09:02:42 2024
 $end
 $version
 	Icarus Verilog
@@ -9,10 +9,10 @@ $timescale
 $end
 $scope module uart_tx_apply_tb $end
 $var reg 1 ! CLK_50M $end
-$var reg 1 " RST_N $end
+$var reg 1 " RST $end
 $scope module u1_uart_tx_apply $end
 $var wire 1 ! clk $end
-$var wire 1 " rst_n $end
+$var wire 1 " rst $end
 $var wire 1 # tx $end
 $var wire 1 $ ready $end
 $var reg 19 % cnt_10ms [18:0] $end
@@ -23,7 +23,7 @@ $var reg 1 ) wait_10ms $end
 $scope module u1_uart_tx $end
 $var wire 1 ! clk $end
 $var wire 8 * data [7:0] $end
-$var wire 1 " rst_n $end
+$var wire 1 " rst $end
 $var wire 1 ( valid $end
 $var reg 4 + bit_cnt [3:0] $end
 $var reg 16 , cnt_bps [15:0] $end
@@ -47,7 +47,7 @@ b0 &
 b0 %
 0$
 1#
-0"
+1"
 0!
 $end
 #10
@@ -56,7 +56,7 @@ bx0 '
 1!
 #20
 0!
-1"
+0"
 #30
 b0 '
 b10 %

@@ -14,12 +14,12 @@ module spi_tb();
 
     always #10  clk_50m <= ~clk_50m;
     
-    reg rst_n;
+    reg rst;
 
     initial begin
-        rst_n <= 0;
+        rst <= 1;
         #200
-        rst_n <= 1;
+        rst <= 0;
     end
     
     reg             valid;
@@ -36,7 +36,7 @@ module spi_tb();
     ) u1_spi (
         // -----------------internal interface------------------
         .clk                            (clk_50m),
-        .rst_n                          (rst_n),
+        .rst                            (rst),
         .CPOL                           (CPOL),
         .CPHA                           (CPHA),
         .CS_input                       (CS_input),

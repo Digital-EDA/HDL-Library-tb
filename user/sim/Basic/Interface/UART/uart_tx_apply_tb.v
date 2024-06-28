@@ -1,11 +1,11 @@
 module uart_tx_apply_tb();
 
     reg        CLK_50M;
-    reg        RST_N;
+    reg        RST;
  
     uart_tx_apply u1_uart_tx_apply(
         .clk            (CLK_50M),
-        .rst_n          (RST_N),
+        .rst            (RST),
         .tx             ()
     );
     
@@ -16,9 +16,9 @@ module uart_tx_apply_tb();
     
     initial begin
         CLK_50M <= 1'b0;
-        RST_N   <= 1'b0;
+        RST     <= 1'b1;
         #20
-        RST_N   <= 1'b1;
+        RST     <= 1'b0;
     end    
  
     initial begin
