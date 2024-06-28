@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module complexMult_tb();
+module complexAdsu_tb();
 
     // Inputs
     reg clock;
@@ -13,46 +13,28 @@ module complexMult_tb();
     reg input_valid;
 
     // Outputs
-    wire [31:0] p_i;
-    wire [31:0] p_q;
-    wire output_valid;
-
-    // Instantiate the DUT (Device Under Test)
-    complex_mult dut (
-        .clock(clock),
-        .enable(enable),
-        .reset(reset),
-        .a_i(a_i),
-        .a_q(a_q),
-        .b_i(b_i),
-        .b_q(b_q),
-        .input_valid(input_valid),
-        .p_i(p_i),
-        .p_q(p_q),
-        .output_valid(output_valid)
-    );
-
     wire 	ovalid;
-    wire [31:0]	result_r;
-    wire [31:0]	result_i;
+    wire [15:0]	result_r;
+    wire [15:0]	result_i;
 
-    cmplMult #(
-        .SCALE_FACTOR 		( 0  		),
+    cmplAdsu #(
+        .SCALE_FACTOR 		( 1  		),
         .REAL_WIDTH_A 		( 16 		),
-        .IMGN_WIDTH_A 		( 16 		),
+        .IMAG_WIDTH_A 		( 16 		),
         .REAL_WIDTH_B 		( 16 		),
-        .IMGN_WIDTH_B 		( 16 		),
-        .REAL_WIDTH_O 		( 32 		),
-        .IMGN_WIDTH_O 		( 32 		))
+        .IMAG_WIDTH_B 		( 16 		),
+        .REAL_WIDTH_O 		( 16 		),
+        .IMAG_WIDTH_O 		( 16 		))
     u_cmplMult(
         //ports
         .clock    		( clock    		),
         .reset    		( reset    		),
-        .ivalid   		( input_valid   		),
-        .dataa_r  		( a_i  		),
-        .dataa_i  		( a_q  		),
-        .datab_r  		( b_i  		),
-        .datab_i  		( b_q  		),
+        .add_sub        ( 0             ),
+        .ivalid   		( input_valid   ),
+        .dataa_r  		( a_i  		    ),
+        .dataa_i  		( a_q  		    ),
+        .datab_r  		( b_i  		    ),
+        .datab_i  		( b_q  		    ),
         .ovalid   		( ovalid   		),
         .result_r 		( result_r 		),
         .result_i 		( result_i 		)
@@ -117,10 +99,8 @@ module complexMult_tb();
 
     // Monitor outputs
     initial begin
-        $dumpfile("complexMult.vcd");        
-        $dumpvars(0, complexMult_tb);  
-        $monitor("Time: %0t | a_i: %d | a_q: %d | b_i: %d | b_q: %d | p_i: %d | p_q: %d | output_valid: %b",
-                 $time, a_i, a_q, b_i, b_q, p_i, p_q, output_valid);
+        $dumpfile("complexAdsu.vcd");        
+        $dumpvars(0, complexAdsu_tb); 
     end
 
 endmodule

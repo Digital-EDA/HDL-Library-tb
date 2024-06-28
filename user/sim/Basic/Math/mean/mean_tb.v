@@ -15,9 +15,8 @@ module mean_tb();
     wire output_valid;
 
     // Instantiate the Unit Under Test (UUT)
-    mean uut (
+    Mean uut (
         .clock(clock),
-        .enable(enable),
         .reset(reset),
         .sign(0),
         .A(a),
@@ -26,6 +25,23 @@ module mean_tb();
         .C(c),
         .ovalid(output_valid)
     );
+
+    wire [15:0]	cout;
+    wire 	output_strobe;
+
+    calc_mean u_calc_mean(
+        //ports
+        .clock         		( clock         		),
+        .enable        		( enable        		),
+        .reset         		( reset         		),
+        .a             		( a             		),
+        .b             		( b             		),
+        .sign          		( 0          		),
+        .input_strobe  		( input_valid  		),
+        .c             		( cout             		),
+        .output_strobe 		( output_strobe 		)
+    );
+
 
     // Clock generation
     always #5 clock = ~clock; // 10ns clock period
@@ -73,9 +89,7 @@ module mean_tb();
     // Monitor signals
     initial begin
         $dumpfile("mean.vcd");        
-        $dumpvars(0, mean_tb);   
-        $monitor("Time: %0t | clock: %b | reset: %b | enable: %b | input_valid: %b | a: %d | b: %d | c: %d | output_valid: %b", 
-                 $time, clock, reset, enable, input_valid, a, b, c, output_valid);
+        $dumpvars(0, mean_tb);
     end
 
 endmodule

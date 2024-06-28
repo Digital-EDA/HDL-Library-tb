@@ -85,17 +85,17 @@ $var reg 32 [ ab_ir [31:0] $end
 $var reg 2 \ ovalid_buf [1:0] $end
 $var parameter 32 ] SCALE_FACTOR [31:0] $end
 $var parameter 32 ^ REAL_WIDTH_A [31:0] $end
-$var parameter 32 _ IMGN_WIDTH_A [31:0] $end
+$var parameter 32 _ IMAG_WIDTH_A [31:0] $end
 $var parameter 32 ` REAL_WIDTH_B [31:0] $end
-$var parameter 32 a IMGN_WIDTH_B [31:0] $end
+$var parameter 32 a IMAG_WIDTH_B [31:0] $end
 $var parameter 32 b REAL_WIDTH_O [31:0] $end
-$var parameter 32 c IMGN_WIDTH_O [31:0] $end
+$var parameter 32 c IMAG_WIDTH_O [31:0] $end
 $var parameter 32 d AB_RR_WIDTH [31:0] $end
 $var parameter 32 e AB_II_WIDTH [31:0] $end
 $var parameter 32 f AB_RI_WIDTH [31:0] $end
 $var parameter 32 g AB_IR_WIDTH [31:0] $end
 $var parameter 32 h REAL_WIDTH [31:0] $end
-$var parameter 32 i IMGN_WIDTH [31:0] $end
+$var parameter 32 i IMAG_WIDTH [31:0] $end
 $var parameter 32 j END_INDEX_R [31:0] $end
 $var parameter 32 k END_INDEX_I [31:0] $end
 $upscope $end

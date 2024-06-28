@@ -1,0 +1,218 @@
+$date
+   Fri Jun 28 11:57:25 2024
+$end
+$version
+  2018.3
+$end
+$timescale
+  1ps
+$end
+$scope module complexAdsu_tb $end
+$var reg 1 ! clock $end
+$var reg 1 " enable $end
+$var reg 1 # reset $end
+$var reg 16 $ a_i [15:0] $end
+$var reg 16 % a_q [15:0] $end
+$var reg 16 & b_i [15:0] $end
+$var reg 16 ' b_q [15:0] $end
+$var reg 1 ( input_valid $end
+$var wire 1 ) ovalid $end
+$var wire 16 * result_r [15:0] $end
+$var wire 16 + result_i [15:0] $end
+$scope module u_cmplMult $end
+$var wire 1 , clock $end
+$var wire 1 - reset $end
+$var wire 1 . add_sub $end
+$var wire 1 / ivalid $end
+$var wire 16 0 dataa_r [15:0] $end
+$var wire 16 1 dataa_i [15:0] $end
+$var wire 16 2 datab_r [15:0] $end
+$var wire 16 3 datab_i [15:0] $end
+$var wire 1 ) ovalid $end
+$var wire 16 * result_r [15:0] $end
+$var wire 16 + result_i [15:0] $end
+$var reg 17 4 ab_rr [16:0] $end
+$var reg 17 5 ab_ii [16:0] $end
+$var reg 1 6 ovalid_buf $end
+$var parameter 32 7 SCALE_FACTOR [31:0] $end
+$var parameter 32 8 REAL_WIDTH_A [31:0] $end
+$var parameter 32 9 IMAG_WIDTH_A [31:0] $end
+$var parameter 32 : REAL_WIDTH_B [31:0] $end
+$var parameter 32 ; IMAG_WIDTH_B [31:0] $end
+$var parameter 32 < REAL_WIDTH_O [31:0] $end
+$var parameter 32 = IMAG_WIDTH_O [31:0] $end
+$var parameter 32 > AB_RR_WIDTH [31:0] $end
+$var parameter 32 ? AB_II_WIDTH [31:0] $end
+$var parameter 32 @ END_INDEX_R [31:0] $end
+$var parameter 32 A END_INDEX_I [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+0"
+1#
+b0 $
+b0 %
+b0 &
+b0 '
+0(
+0)
+b0 *
+b0 +
+0,
+1-
+0.
+0/
+b0 0
+b0 1
+b0 2
+b0 3
+b0 4
+b0 5
+06
+b1 7
+b10000 8
+b10000 9
+b10000 :
+b10000 ;
+b10000 <
+b10000 =
+b10000 >
+b10000 ?
+b1 @
+b1 A
+$end
+#5000
+1!
+1,
+#10000
+0!
+1"
+0#
+0,
+0-
+#15000
+1!
+1,
+#20000
+0!
+b11 $
+b100 %
+b1 &
+b10 '
+1(
+0,
+1/
+b11 0
+b100 1
+b1 2
+b10 3
+#25000
+1!
+1)
+b100 *
+b110 +
+1,
+b100 4
+b110 5
+16
+#30000
+0!
+0(
+0,
+0/
+#35000
+1!
+0)
+1,
+06
+#40000
+0!
+0,
+#45000
+1!
+1,
+#50000
+0!
+b111 $
+b1000 %
+b101 &
+b110 '
+1(
+0,
+1/
+b111 0
+b1000 1
+b101 2
+b110 3
+#55000
+1!
+1)
+b1100 *
+b1110 +
+1,
+b1100 4
+b1110 5
+16
+#60000
+0!
+0(
+0,
+0/
+#65000
+1!
+0)
+1,
+06
+#70000
+0!
+0,
+#75000
+1!
+1,
+#80000
+0!
+b1111111111111101 $
+b10 %
+b100 &
+b1111111111111111 '
+1(
+0,
+1/
+b1111111111111101 0
+b10 1
+b100 2
+b1111111111111111 3
+#85000
+1!
+1)
+b1 *
+b1 +
+1,
+b1 4
+b1 5
+16
+#90000
+0!
+0(
+0,
+0/
+#95000
+1!
+0)
+1,
+06
+#100000
+0!
+0,
+#105000
+1!
+1,
+#110000
+0!
+0,
+#115000
+1!
+1,

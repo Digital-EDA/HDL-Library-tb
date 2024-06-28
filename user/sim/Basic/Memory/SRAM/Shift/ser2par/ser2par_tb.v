@@ -20,9 +20,9 @@ module ser2par_tb();
         .clock(clock),
         .enable(enable),
         .reset(reset),
-        .direct(1),
+        .direct(0),
 
-        .ivalid(ivalid),
+        .ivalid(clock),
         .idata(idata),
 
         .ovalid(ovalid),
@@ -38,9 +38,9 @@ module ser2par_tb();
         .enable       	( enable        ),
         .reset        	( reset         ),
         .bit_in       	( idata         ),
-        .input_valid  	( ivalid        ),
+        .input_strobe  	( clock        ),
         .byte_out     	( byte_out      ),
-        .output_valid 	( output_valid  )
+        .output_strobe 	( output_valid  )
     );
     
 
@@ -72,7 +72,15 @@ module ser2par_tb();
         idata = 1; #10;
 
         // 停止串行输入
-        ivalid = 0;
+        // ivalid = 0;
+        idata = 1; #10;
+        idata = 0; #10;
+        idata = 1; #10;
+        idata = 1; #10;
+        idata = 1; #10;
+        idata = 0; #10;
+        idata = 1; #10;
+        idata = 1; #10;
 
         // 等待一段时间以观察输出
         #20;
@@ -83,7 +91,7 @@ module ser2par_tb();
 
     // 监控信号
     initial begin
-        $dumpfile("wave.vcd");        
+        $dumpfile("ser2par.vcd");        
         $dumpvars(0, ser2par_tb);   
         $monitor("Time: %0t | clock: %b | reset: %b | enable: %b | ivalid: %b | idata: %b | ovalid: %b | odata: %b", 
                  $time, clock, reset, enable, ivalid, idata, ovalid, odata);

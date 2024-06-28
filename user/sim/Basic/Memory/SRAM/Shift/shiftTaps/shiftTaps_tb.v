@@ -2,7 +2,7 @@
 module shiftTaps_tb();
 
     parameter DATA_WIDTH = 32;
-    parameter ADDR_WIDTH = 3;
+    parameter ADDR_WIDTH = 32;
     parameter MAIN_FRE   = 100; //unit MHz
     reg                   sys_clk = 0;
     reg                   sys_rst = 1;
@@ -29,12 +29,12 @@ module shiftTaps_tb();
     
     shiftTaps #(
         .WIDTH 	( DATA_WIDTH     ),
-        .SHIFT 	( 4  ))
+        .SHIFT 	( 1              ))
     u_shiftTaps(
         .clock    	( sys_clk     ),
         .reset    	( sys_rst   ),
 
-        .ivalid   	( ~sys_rst  ),
+        .ivalid   	( sys_clk  ),
         .shiftin  	( data      ),
 
         .ovalid   	( ovalid    ),
@@ -46,7 +46,7 @@ module shiftTaps_tb();
     
     delay #(
         .WIDTH 	( DATA_WIDTH  ),
-        .DELAY 	( 4   ))
+        .DELAY 	( 512         ))
     u_delay(
         .clock 	( sys_clk  ),
         .reset 	( sys_rst  ),
@@ -60,13 +60,13 @@ module shiftTaps_tb();
 
     delay_sample #(
         .DATA_WIDTH  	( DATA_WIDTH  ),
-        .DELAY_SHIFT 	( 2   ))
+        .DELAY_SHIFT 	( 9   ))
     u_delay_sample(
         .clock        	( sys_clk        ),
         .enable       	( ~sys_rst       ),
         .reset        	( sys_rst        ),
         .data_in      	( data           ),
-        .input_valid  	( ~sys_rst       ),
+        .input_valid  	( sys_clk       ),
         .data_out     	( data_out       ),
         .output_valid 	( output_valid   )
     );

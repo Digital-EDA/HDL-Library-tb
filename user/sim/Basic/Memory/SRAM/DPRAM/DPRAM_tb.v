@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
-module tb_DPRAM;
+module DPRAM_tb;
 
     // Parameters
-    parameter WIDTH = 32;
+    parameter WIDTH = 8;
     parameter DEPTH = 4;
 
     // Inputs
@@ -41,6 +41,29 @@ module tb_DPRAM;
         .doutb(doutb)
     );
 
+    wire [WIDTH-1:0]	doa;
+    wire [WIDTH-1:0]	dob;
+
+    ram_2port #(
+        .DWIDTH 		( WIDTH 		),
+        .AWIDTH 		( $clog2(DEPTH) ))
+    u_ram_2port(
+        //ports
+        .clka  		( clka  		),
+        .ena   		( ena   		),
+        .wea   		( wea   		),
+        .addra 		( addra 		),
+        .dia   		( dina   		),
+        .doa   		( doa   		),
+        .clkb  		( clkb  		),
+        .enb   		( enb   		),
+        .web   		( web   		),
+        .addrb 		( addrb 		),
+        .dib   		( dinb   		),
+        .dob   		( dob   		)
+    );
+
+
     // Clock generation
     initial begin
         clka = 0;
@@ -65,26 +88,37 @@ module tb_DPRAM;
         dinb = 0;
 
         // Apply reset
-        #10;
+        #15;
 
         // Write to port A
         ena = 1;
+        enb = 1;
         wea = 1;
+        web = 1;
         addra = 0;
-        dina = 32'hA5A5A5A5;
+        addrb = 0;
+        dina = 32'ha0;
+        dinb = 32'hb0;
         #10;
         
-        addra = 1;
-        dina = 32'h5A5A5A5A;
+        addra = 0;
+        addrb = 0;
+        dina = 32'ha1;
+        dinb = 32'hb1;
         #10;
 
         wea = 0; // Stop writing
+        web = 0;
+        addra = 1;
+        addrb = 1;
 
         // Read from port A
         #10;
         addra = 0;
+        addrb = 0;
         #10;
         addra = 1;
+        addrb = 1;
         #10;
 
         ena = 0; // Disable port A
@@ -93,11 +127,11 @@ module tb_DPRAM;
         enb = 1;
         web = 1;
         addrb = 2;
-        dinb = 32'h12345678;
+        dinb = 32'h12;
         #10;
         
         addrb = 3;
-        dinb = 32'h87654321;
+        dinb = 32'h87;
         #10;
 
         web = 0; // Stop writing
@@ -118,6 +152,8 @@ module tb_DPRAM;
 
     // Monitor outputs
     initial begin
+        $dumpfile("DPRAM.vcd");        
+        $dumpvars(0, DPRAM_tb);
         $monitor("Time: %0t | clka: %b | ena: %b | wea: %b | addra: %0d | dina: %h | douta: %h | clkb: %b | enb: %b | web: %b | addrb: %0d | dinb: %h | doutb: %h",
                  $time, clka, ena, wea, addra, dina, douta, clkb, enb, web, addrb, dinb, doutb);
     end

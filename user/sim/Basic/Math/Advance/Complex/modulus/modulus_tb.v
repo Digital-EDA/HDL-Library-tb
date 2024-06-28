@@ -23,8 +23,8 @@ module modulus_tb();
     dut (
         .clock(clock),
         .reset(reset),
-        .i(i),
-        .q(q),
+        .idata_r(i),
+        .idata_i(q),
         .ivalid(input_valid),
         .modulus(mag),
         .ovalid(mag_stb)

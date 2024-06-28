@@ -54,11 +54,11 @@ module rotate_tb;
         .rot_data 		( rot_data 		),
         .rot_addr 		( rot_addr 		),
         .ivalid   		( input_valid   ),
-        .in_i     		( in_i     		),
-        .in_q     		( in_q     		),
+        .idata_r     	( in_i     		),
+        .idata_i     	( in_q     		),
         .ovalid   		( ovalid   		),
-        .out_i    		( out_i    		),
-        .out_q    		( out_q    		)
+        .result_r    	( out_i    		),
+        .result_i    	( out_q    		)
     );
 
 

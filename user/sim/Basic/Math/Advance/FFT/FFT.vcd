@@ -174,8 +174,8 @@ $var wire 17 <! qb_i [16:0] $end
 $var parameter 32 =! DATA_WIDTH [31:0] $end
 $var parameter 32 >! REAL_MSB [31:0] $end
 $var parameter 32 ?! REAL_LSB [31:0] $end
-$var parameter 32 @! IMGN_MSB [31:0] $end
-$var parameter 32 A! IMGN_LSB [31:0] $end
+$var parameter 32 @! IMAG_MSB [31:0] $end
+$var parameter 32 A! IMAG_LSB [31:0] $end
 $upscope $end
 $upscope $end
 $scope module LARGER_THAN_2.u_ftrans_I $end
@@ -197,8 +197,8 @@ $var parameter 32 H! TOTAL_STEP [31:0] $end
 $var parameter 32 I! DATA_WIDTH [31:0] $end
 $var parameter 32 J! REAL_MSB [31:0] $end
 $var parameter 32 K! REAL_LSB [31:0] $end
-$var parameter 32 L! IMGN_MSB [31:0] $end
-$var parameter 32 M! IMGN_LSB [31:0] $end
+$var parameter 32 L! IMAG_MSB [31:0] $end
+$var parameter 32 M! IMAG_LSB [31:0] $end
 $upscope $end
 $scope module LARGER_THAN_2.BF_inst_I $end
 $var wire 1 C iclk $end
@@ -260,8 +260,8 @@ $var wire 17 n! qb_i [16:0] $end
 $var parameter 32 o! DATA_WIDTH [31:0] $end
 $var parameter 32 p! REAL_MSB [31:0] $end
 $var parameter 32 q! REAL_LSB [31:0] $end
-$var parameter 32 r! IMGN_MSB [31:0] $end
-$var parameter 32 s! IMGN_LSB [31:0] $end
+$var parameter 32 r! IMAG_MSB [31:0] $end
+$var parameter 32 s! IMAG_LSB [31:0] $end
 $upscope $end
 $upscope $end
 $scope module LARGER_THAN_2.LARGER_THAN_3.u_ftrans_II $end
@@ -296,14 +296,14 @@ $var parameter 32 )" SCALE_FACTOR [31:0] $end
 $var parameter 32 *" DATA_WIDTH [31:0] $end
 $var parameter 32 +" REAL_MSB [31:0] $end
 $var parameter 32 ," REAL_LSB [31:0] $end
-$var parameter 32 -" IMGN_MSB [31:0] $end
-$var parameter 32 ." IMGN_LSB [31:0] $end
+$var parameter 32 -" IMAG_MSB [31:0] $end
+$var parameter 32 ." IMAG_LSB [31:0] $end
 $var parameter 32 /" REAL_MMSB [31:0] $end
 $var parameter 32 0" REAL_MLSB [31:0] $end
-$var parameter 32 1" IMGN_MMSB [31:0] $end
-$var parameter 32 2" IMGN_MLSB [31:0] $end
+$var parameter 32 1" IMAG_MMSB [31:0] $end
+$var parameter 32 2" IMAG_MLSB [31:0] $end
 $var parameter 32 3" MREAL_WIDTH [31:0] $end
-$var parameter 32 4" MIMGN_WIDTH [31:0] $end
+$var parameter 32 4" MIMAG_WIDTH [31:0] $end
 $var parameter 32 5" TWIDDLE_WIDTH [31:0] $end
 $scope module u_ftwiddle $end
 $var wire 6 6" idx [5:0] $end
@@ -336,17 +336,17 @@ $var reg 34 G" ab_ir [33:0] $end
 $var reg 2 H" ovalid_buf [1:0] $end
 $var parameter 32 I" SCALE_FACTOR [31:0] $end
 $var parameter 32 J" REAL_WIDTH_A [31:0] $end
-$var parameter 32 K" IMGN_WIDTH_A [31:0] $end
+$var parameter 32 K" IMAG_WIDTH_A [31:0] $end
 $var parameter 32 L" REAL_WIDTH_B [31:0] $end
-$var parameter 32 M" IMGN_WIDTH_B [31:0] $end
+$var parameter 32 M" IMAG_WIDTH_B [31:0] $end
 $var parameter 32 N" REAL_WIDTH_O [31:0] $end
-$var parameter 32 O" IMGN_WIDTH_O [31:0] $end
+$var parameter 32 O" IMAG_WIDTH_O [31:0] $end
 $var parameter 32 P" AB_RR_WIDTH [31:0] $end
 $var parameter 32 Q" AB_II_WIDTH [31:0] $end
 $var parameter 32 R" AB_RI_WIDTH [31:0] $end
 $var parameter 32 S" AB_IR_WIDTH [31:0] $end
 $var parameter 32 T" REAL_WIDTH [31:0] $end
-$var parameter 32 U" IMGN_WIDTH [31:0] $end
+$var parameter 32 U" IMAG_WIDTH [31:0] $end
 $var parameter 32 V" END_INDEX_R [31:0] $end
 $var parameter 32 W" END_INDEX_I [31:0] $end
 $upscope $end
@@ -436,8 +436,8 @@ $var wire 17 ,# qb_i [16:0] $end
 $var parameter 32 -# DATA_WIDTH [31:0] $end
 $var parameter 32 .# REAL_MSB [31:0] $end
 $var parameter 32 /# REAL_LSB [31:0] $end
-$var parameter 32 0# IMGN_MSB [31:0] $end
-$var parameter 32 1# IMGN_LSB [31:0] $end
+$var parameter 32 0# IMAG_MSB [31:0] $end
+$var parameter 32 1# IMAG_LSB [31:0] $end
 $upscope $end
 $upscope $end
 $scope module LARGER_THAN_2.u_ftrans_I $end
@@ -459,8 +459,8 @@ $var parameter 32 8# TOTAL_STEP [31:0] $end
 $var parameter 32 9# DATA_WIDTH [31:0] $end
 $var parameter 32 :# REAL_MSB [31:0] $end
 $var parameter 32 ;# REAL_LSB [31:0] $end
-$var parameter 32 <# IMGN_MSB [31:0] $end
-$var parameter 32 =# IMGN_LSB [31:0] $end
+$var parameter 32 <# IMAG_MSB [31:0] $end
+$var parameter 32 =# IMAG_LSB [31:0] $end
 $upscope $end
 $scope module LARGER_THAN_2.BF_inst_I $end
 $var wire 1 C iclk $end
@@ -522,8 +522,8 @@ $var wire 17 ^# qb_i [16:0] $end
 $var parameter 32 _# DATA_WIDTH [31:0] $end
 $var parameter 32 `# REAL_MSB [31:0] $end
 $var parameter 32 a# REAL_LSB [31:0] $end
-$var parameter 32 b# IMGN_MSB [31:0] $end
-$var parameter 32 c# IMGN_LSB [31:0] $end
+$var parameter 32 b# IMAG_MSB [31:0] $end
+$var parameter 32 c# IMAG_LSB [31:0] $end
 $upscope $end
 $upscope $end
 $scope module LARGER_THAN_2.LARGER_THAN_3.u_ftrans_II $end
@@ -558,14 +558,14 @@ $var parameter 32 w# SCALE_FACTOR [31:0] $end
 $var parameter 32 x# DATA_WIDTH [31:0] $end
 $var parameter 32 y# REAL_MSB [31:0] $end
 $var parameter 32 z# REAL_LSB [31:0] $end
-$var parameter 32 {# IMGN_MSB [31:0] $end
-$var parameter 32 |# IMGN_LSB [31:0] $end
+$var parameter 32 {# IMAG_MSB [31:0] $end
+$var parameter 32 |# IMAG_LSB [31:0] $end
 $var parameter 32 }# REAL_MMSB [31:0] $end
 $var parameter 32 ~# REAL_MLSB [31:0] $end
-$var parameter 32 !$ IMGN_MMSB [31:0] $end
-$var parameter 32 "$ IMGN_MLSB [31:0] $end
+$var parameter 32 !$ IMAG_MMSB [31:0] $end
+$var parameter 32 "$ IMAG_MLSB [31:0] $end
 $var parameter 32 #$ MREAL_WIDTH [31:0] $end
-$var parameter 32 $$ MIMGN_WIDTH [31:0] $end
+$var parameter 32 $$ MIMAG_WIDTH [31:0] $end
 $var parameter 32 %$ TWIDDLE_WIDTH [31:0] $end
 $scope module u_ftwiddle $end
 $var wire 4 &$ idx [3:0] $end
@@ -598,17 +598,17 @@ $var reg 34 7$ ab_ir [33:0] $end
 $var reg 2 8$ ovalid_buf [1:0] $end
 $var parameter 32 9$ SCALE_FACTOR [31:0] $end
 $var parameter 32 :$ REAL_WIDTH_A [31:0] $end
-$var parameter 32 ;$ IMGN_WIDTH_A [31:0] $end
+$var parameter 32 ;$ IMAG_WIDTH_A [31:0] $end
 $var parameter 32 <$ REAL_WIDTH_B [31:0] $end
-$var parameter 32 =$ IMGN_WIDTH_B [31:0] $end
+$var parameter 32 =$ IMAG_WIDTH_B [31:0] $end
 $var parameter 32 >$ REAL_WIDTH_O [31:0] $end
-$var parameter 32 ?$ IMGN_WIDTH_O [31:0] $end
+$var parameter 32 ?$ IMAG_WIDTH_O [31:0] $end
 $var parameter 32 @$ AB_RR_WIDTH [31:0] $end
 $var parameter 32 A$ AB_II_WIDTH [31:0] $end
 $var parameter 32 B$ AB_RI_WIDTH [31:0] $end
 $var parameter 32 C$ AB_IR_WIDTH [31:0] $end
 $var parameter 32 D$ REAL_WIDTH [31:0] $end
-$var parameter 32 E$ IMGN_WIDTH [31:0] $end
+$var parameter 32 E$ IMAG_WIDTH [31:0] $end
 $var parameter 32 F$ END_INDEX_R [31:0] $end
 $var parameter 32 G$ END_INDEX_I [31:0] $end
 $upscope $end
@@ -698,8 +698,8 @@ $var wire 17 z$ qb_i [16:0] $end
 $var parameter 32 {$ DATA_WIDTH [31:0] $end
 $var parameter 32 |$ REAL_MSB [31:0] $end
 $var parameter 32 }$ REAL_LSB [31:0] $end
-$var parameter 32 ~$ IMGN_MSB [31:0] $end
-$var parameter 32 !% IMGN_LSB [31:0] $end
+$var parameter 32 ~$ IMAG_MSB [31:0] $end
+$var parameter 32 !% IMAG_LSB [31:0] $end
 $upscope $end
 $upscope $end
 $scope module LARGER_THAN_2.u_ftrans_I $end
@@ -721,8 +721,8 @@ $var parameter 32 (% TOTAL_STEP [31:0] $end
 $var parameter 32 )% DATA_WIDTH [31:0] $end
 $var parameter 32 *% REAL_MSB [31:0] $end
 $var parameter 32 +% REAL_LSB [31:0] $end
-$var parameter 32 ,% IMGN_MSB [31:0] $end
-$var parameter 32 -% IMGN_LSB [31:0] $end
+$var parameter 32 ,% IMAG_MSB [31:0] $end
+$var parameter 32 -% IMAG_LSB [31:0] $end
 $upscope $end
 $scope module LARGER_THAN_2.BF_inst_I $end
 $var wire 1 C iclk $end
@@ -783,8 +783,8 @@ $var wire 17 M% qb_i [16:0] $end
 $var parameter 32 N% DATA_WIDTH [31:0] $end
 $var parameter 32 O% REAL_MSB [31:0] $end
 $var parameter 32 P% REAL_LSB [31:0] $end
-$var parameter 32 Q% IMGN_MSB [31:0] $end
-$var parameter 32 R% IMGN_LSB [31:0] $end
+$var parameter 32 Q% IMAG_MSB [31:0] $end
+$var parameter 32 R% IMAG_LSB [31:0] $end
 $upscope $end
 $upscope $end
 $upscope $end

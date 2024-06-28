@@ -1,0 +1,316 @@
+$date
+   Fri Jun 28 16:33:06 2024
+$end
+$version
+  2018.3
+$end
+$timescale
+  1ps
+$end
+$scope module mean_tb $end
+$var reg 1 ! clock $end
+$var reg 1 " enable $end
+$var reg 1 # reset $end
+$var reg 16 $ a [15:0] $end
+$var reg 16 % b [15:0] $end
+$var reg 1 & input_valid $end
+$var wire 16 ' c [15:0] $end
+$var wire 1 ( output_valid $end
+$var wire 16 ) cout [15:0] $end
+$var wire 1 * output_strobe $end
+$scope module uut $end
+$var wire 1 + clock $end
+$var wire 1 , reset $end
+$var wire 1 - sign $end
+$var wire 1 . ivalid $end
+$var wire 16 / A [15:0] $end
+$var wire 16 0 B [15:0] $end
+$var wire 1 ( ovalid $end
+$var wire 16 ' C [15:0] $end
+$var reg 17 1 sum [16:0] $end
+$var reg 16 2 res [15:0] $end
+$var reg 16 3 cc [15:0] $end
+$var reg 2 4 sign_buf [1:0] $end
+$var reg 3 5 ovalid_buf [2:0] $end
+$var parameter 32 6 WIDTH [31:0] $end
+$upscope $end
+$scope module u_calc_mean $end
+$var wire 1 7 clock $end
+$var wire 1 8 enable $end
+$var wire 1 9 reset $end
+$var wire 16 : a [15:0] $end
+$var wire 16 ; b [15:0] $end
+$var wire 1 < sign $end
+$var wire 1 = input_strobe $end
+$var reg 16 > c [15:0] $end
+$var reg 1 ? output_strobe $end
+$var reg 16 @ aa [15:0] $end
+$var reg 16 A bb [15:0] $end
+$var reg 16 B cc [15:0] $end
+$var reg 2 C delay [1:0] $end
+$var reg 2 D sign_stage [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+0"
+1#
+b0 $
+b0 %
+0&
+bx '
+0(
+bx )
+x*
+0+
+1,
+0-
+0.
+b0 /
+b0 0
+b0 1
+bx 2
+bx 3
+b0 4
+b0 5
+b10000 6
+07
+08
+19
+b0 :
+b0 ;
+0<
+0=
+bx >
+x?
+bx @
+bx A
+bx B
+bx C
+bx D
+$end
+#5000
+1!
+b0 )
+0*
+1+
+b0 2
+bx 3
+17
+b0 >
+0?
+b0 @
+b0 A
+b0 B
+b0 C
+#10000
+0!
+1"
+0#
+0+
+0,
+07
+18
+09
+#15000
+1!
+b0 '
+1+
+b0 3
+17
+bx0 D
+#20000
+0!
+b1111111111100001 $
+b1011 %
+1&
+0+
+1.
+b1111111111100001 /
+b1011 0
+07
+b1111111111100001 :
+b1011 ;
+1=
+#25000
+1!
+1+
+b11111111111101100 1
+b1 5
+17
+b1111111111110000 @
+b101 A
+b1 C
+b0 D
+#30000
+0!
+0&
+0+
+0.
+07
+0=
+#35000
+1!
+1+
+b1111111111110110 2
+b10 5
+17
+b1111111111110101 B
+b10 C
+#40000
+0!
+0+
+07
+#45000
+1!
+b1111111111110110 '
+1(
+b1111111111110101 )
+1*
+1+
+b1111111111110110 3
+b100 5
+17
+b1111111111110101 >
+1?
+b0 C
+#50000
+0!
+0+
+07
+#55000
+1!
+0(
+0*
+1+
+b0 5
+17
+0?
+#60000
+0!
+b1011 $
+b10101 %
+1&
+0+
+1.
+b1011 /
+b10101 0
+07
+b1011 :
+b10101 ;
+1=
+#65000
+1!
+1+
+b100000 1
+b1 5
+17
+b101 @
+b1010 A
+b1 C
+#70000
+0!
+0&
+0+
+0.
+07
+0=
+#75000
+1!
+1+
+b10000 2
+b10 5
+17
+b1111 B
+b10 C
+#80000
+0!
+0+
+07
+#85000
+1!
+b10000 '
+1(
+b1111 )
+1*
+1+
+b10000 3
+b100 5
+17
+b1111 >
+1?
+b0 C
+#90000
+0!
+0+
+07
+#95000
+1!
+0(
+0*
+1+
+b0 5
+17
+0?
+#100000
+0!
+0+
+07
+#105000
+1!
+1+
+17
+#110000
+0!
+0+
+07
+#115000
+1!
+1+
+17
+#120000
+0!
+0+
+07
+#125000
+1!
+1+
+17
+#130000
+0!
+0+
+07
+#135000
+1!
+1+
+17
+#140000
+0!
+0+
+07
+#145000
+1!
+1+
+17
+#150000
+0!
+0+
+07
+#155000
+1!
+1+
+17
+#160000
+0!
+0+
+07
+#165000
+1!
+1+
+17
+#170000
+0!
+0+
+07

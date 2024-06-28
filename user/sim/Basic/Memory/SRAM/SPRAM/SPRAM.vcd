@@ -1,0 +1,182 @@
+$date
+   Thu Jun 27 23:42:44 2024
+$end
+$version
+  2018.3
+$end
+$timescale
+  1ps
+$end
+$scope module SPRAM_tb $end
+$var reg 1 ! clock $end
+$var reg 1 " reset $end
+$var reg 1 # wen $end
+$var reg 1 $ ren $end
+$var reg 3 % waddr [2:0] $end
+$var reg 3 & raddr [2:0] $end
+$var reg 8 ' din [7:0] $end
+$var wire 8 ( dout [7:0] $end
+$var parameter 32 ) WIDTH [31:0] $end
+$var parameter 32 * STEP [31:0] $end
+$scope module mem $end
+$var wire 1 + clka $end
+$var wire 1 , ena $end
+$var wire 1 - wea $end
+$var wire 2 . addra [1:0] $end
+$var wire 8 / dina [7:0] $end
+$var wire 8 ( douta [7:0] $end
+$var reg 8 0 douta_buf [7:0] $end
+$var integer 32 1 i $end
+$var parameter 32 2 MODE [31:0] $end
+$var parameter 32 3 WIDTH [31:0] $end
+$var parameter 32 4 DEPTH [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+1"
+0#
+0$
+b0 %
+b0 &
+b0 '
+bx (
+b1000 )
+b10 *
+0+
+0,
+0-
+b0 .
+b0 /
+bx 0
+b100 1
+b0 2
+b1000 3
+b100 4
+$end
+#5000
+1!
+1+
+#10000
+0!
+0+
+#15000
+1!
+1+
+#20000
+0!
+0"
+0+
+1,
+#25000
+1!
+b0 (
+1+
+b0 0
+#30000
+0!
+0+
+#35000
+1!
+1+
+#40000
+0!
+b0 %
+b0 '
+0+
+#45000
+1!
+1+
+#50000
+0!
+0+
+#55000
+1!
+1#
+b0 %
+b10100000 '
+b10100000 (
+1+
+1-
+b10100000 /
+b10100000 0
+#60000
+0!
+0+
+#65000
+1!
+b0 %
+b10110000 '
+b10110000 (
+1+
+b10110000 /
+b10110000 0
+#70000
+0!
+0+
+#75000
+1!
+b1 %
+b10100001 '
+b10100001 (
+1+
+b1 .
+b10100001 /
+b10100001 0
+#80000
+0!
+0+
+#85000
+1!
+0#
+b0 %
+b10100010 '
+b10110000 (
+1+
+0-
+b0 .
+b10100010 /
+b10110000 0
+#90000
+0!
+0+
+#95000
+1!
+b1 %
+b10100011 '
+b10100001 (
+1+
+b1 .
+b10100011 /
+b10100001 0
+#100000
+0!
+0+
+#105000
+1!
+1"
+1+
+0,
+#110000
+0!
+0+
+#115000
+1!
+1+
+#120000
+0!
+0+
+#125000
+1!
+1+
+#130000
+0!
+0+
+#135000
+1!
+1+
+#140000
+0!
+0+

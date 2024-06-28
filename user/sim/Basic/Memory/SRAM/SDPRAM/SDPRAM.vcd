@@ -1,0 +1,177 @@
+$date
+   Thu Jun 27 20:03:11 2024
+$end
+$version
+  2018.3
+$end
+$timescale
+  1ps
+$end
+$scope module SDPRAM_tb $end
+$var reg 1 ! clock $end
+$var reg 1 " reset $end
+$var reg 1 # wen $end
+$var reg 1 $ ren $end
+$var reg 3 % waddr [2:0] $end
+$var reg 3 & raddr [2:0] $end
+$var reg 8 ' din [7:0] $end
+$var wire 8 ( dout [7:0] $end
+$var parameter 32 ) WIDTH [31:0] $end
+$var parameter 32 * STEP [31:0] $end
+$scope module mem $end
+$var wire 1 + clock $end
+$var wire 1 , reset $end
+$var wire 1 - wen $end
+$var wire 1 . ren $end
+$var wire 2 / waddr [1:0] $end
+$var wire 2 0 raddr [1:0] $end
+$var wire 8 1 din [7:0] $end
+$var wire 8 ( dout [7:0] $end
+$var reg 8 2 rdout [7:0] $end
+$var integer 32 3 \RAM_GEN.i  $end
+$var parameter 32 4 DEPTH [31:0] $end
+$var parameter 32 5 WIDTH [31:0] $end
+$var parameter 32 6 STEP [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+1"
+0#
+0$
+b0 %
+b0 &
+b0 '
+b0 (
+b1000 )
+b10 *
+0+
+1,
+0-
+0.
+b0 /
+b0 0
+b0 1
+b0 2
+b100 3
+b100 4
+b1000 5
+b1 6
+$end
+#5000
+1!
+1+
+b100 3
+#10000
+0!
+0+
+#15000
+1!
+1+
+b100 3
+#20000
+0!
+0"
+0+
+0,
+#25000
+1!
+1+
+#30000
+0!
+0+
+#35000
+1!
+1+
+#40000
+0!
+b0 %
+b0 &
+b0 '
+0+
+#45000
+1!
+1+
+#50000
+0!
+0+
+#55000
+1!
+1#
+1$
+b0 %
+b0 &
+b10100000 '
+1+
+1-
+1.
+b10100000 1
+#60000
+0!
+0+
+#65000
+1!
+b0 %
+b0 &
+b10100001 '
+b10100000 (
+1+
+b10100001 1
+b10100000 2
+#70000
+0!
+0+
+#75000
+1!
+b1 %
+b10 &
+b10100010 '
+b10 (
+1+
+b1 /
+b10 0
+b10100010 1
+b10 2
+#80000
+0!
+0+
+#85000
+1!
+b1 %
+b0 &
+b10100010 '
+b10100001 (
+1+
+b0 0
+b10100001 2
+#90000
+0!
+0+
+#95000
+1!
+0$
+b1 %
+b1 &
+b10100011 '
+1+
+0.
+b1 0
+b10100011 1
+#100000
+0!
+0+
+#105000
+1!
+0#
+1$
+b10 %
+b0 &
+b10100100 '
+1+
+0-
+1.
+b10 /
+b0 0
+b10100100 1

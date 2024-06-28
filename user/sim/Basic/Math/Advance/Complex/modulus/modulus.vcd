@@ -1,5 +1,5 @@
 $date
-   Thu Jun 20 10:40:41 2024
+   Fri Jun 28 14:02:05 2024
 $end
 $version
   2018.3
@@ -21,16 +21,17 @@ $scope module dut $end
 $var wire 1 * clock $end
 $var wire 1 + reset $end
 $var wire 1 , ivalid $end
-$var wire 16 - i [15:0] $end
-$var wire 16 . q [15:0] $end
+$var wire 16 - data_r [15:0] $end
+$var wire 16 . data_i [15:0] $end
 $var wire 1 ( ovalid $end
 $var reg 16 / modulus [15:0] $end
-$var reg 16 0 abs_i [15:0] $end
-$var reg 16 1 abs_q [15:0] $end
+$var reg 16 0 abs_r [15:0] $end
+$var reg 16 1 abs_i [15:0] $end
 $var reg 16 2 max [15:0] $end
 $var reg 16 3 min [15:0] $end
-$var reg 3 4 ovalid_buf [2:0] $end
-$var parameter 32 5 WIDTH [31:0] $end
+$var wire 16 4 rmin [15:0] $end
+$var reg 3 5 ovalid_buf [2:0] $end
+$var parameter 32 6 WIDTH [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
@@ -55,8 +56,9 @@ b0 0
 b0 1
 bx 2
 bx 3
-b0 4
-b10000 5
+bx 4
+b0 5
+b10000 6
 $end
 #5000
 1!
@@ -64,6 +66,7 @@ $end
 bx /
 b0 2
 b0 3
+b0 4
 #10000
 0!
 1"
@@ -89,7 +92,7 @@ b11 .
 1*
 b100 0
 b11 1
-b1 4
+b1 5
 #30000
 0!
 0&
@@ -100,17 +103,18 @@ b1 4
 1*
 b100 2
 b11 3
-b10 4
+b1 4
+b10 5
 #40000
 0!
 0*
 #45000
 1!
-b100 '
+b101 '
 1(
 1*
-b100 /
-b100 4
+b101 /
+b100 5
 #50000
 0!
 0*
@@ -118,7 +122,7 @@ b100 4
 1!
 0(
 1*
-b0 4
+b0 5
 #60000
 0!
 0*
@@ -139,7 +143,7 @@ b111 .
 1*
 b1000 0
 b111 1
-b1 4
+b1 5
 #80000
 0!
 0&
@@ -151,16 +155,17 @@ b1 4
 b1000 2
 b111 3
 b10 4
+b10 5
 #90000
 0!
 0*
 #95000
 1!
-b1001 '
+b1010 '
 1(
 1*
-b1001 /
-b100 4
+b1010 /
+b100 5
 #100000
 0!
 0*
@@ -168,7 +173,7 @@ b100 4
 1!
 0(
 1*
-b0 4
+b0 5
 #110000
 0!
 0*
@@ -189,7 +194,7 @@ b1111111111111101 .
 1*
 b10 0
 b11 1
-b1 4
+b1 5
 #130000
 0!
 0&
@@ -200,17 +205,18 @@ b1 4
 1*
 b11 2
 b10 3
-b10 4
+b1 4
+b10 5
 #140000
 0!
 0*
 #145000
 1!
-b11 '
+b100 '
 1(
 1*
-b11 /
-b100 4
+b100 /
+b100 5
 #150000
 0!
 0*
@@ -218,7 +224,7 @@ b100 4
 1!
 0(
 1*
-b0 4
+b0 5
 #160000
 0!
 0*
@@ -234,3 +240,6 @@ b0 4
 #180000
 0!
 0*
+#185000
+1!
+1*
