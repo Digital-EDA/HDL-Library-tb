@@ -30,14 +30,13 @@ module divider_tb;
     wire signed [31:0]	quotient;
 
     divider #(
-        .QUOTIENT 		( 32 		),
         .DIVIDEND 		( 32 		),
         .DIVISOR  		( 24 		))
     u_divider(
         //ports
         .clock    		( clock    		),
         .reset    		( reset    		),
-        .ivalid   		( ivalid   		),
+        .ivalid   		( input_valid   ),
         .divisor  		( divisor  		),
         .dividend 		( dividend 		),
         .ovalid   		( ovalid   		),
@@ -66,7 +65,7 @@ module divider_tb;
         input_valid = 0;
 
         // Apply reset
-        #10;
+        #15;
         reset = 0;
         enable = 1;
 
@@ -96,7 +95,7 @@ module divider_tb;
 
         // Test case 3: dividend = 100, divisor = -5
         #10;
-        dividend = 100;
+        dividend = 103;
         divisor = -5;
         input_valid = 1;
         #10;

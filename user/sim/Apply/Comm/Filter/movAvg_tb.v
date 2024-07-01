@@ -1,10 +1,10 @@
 `timescale 1ns / 1ps
 
-module movingAvg_tb;
+module movAvg_tb;
 
     // Parameters
     parameter DATA_WIDTH = 32;
-    parameter WINDOW_SHIFT = 4;
+    parameter WINDOW_SHIFT = 2;
     parameter WINDOW_SIZE = 1 << WINDOW_SHIFT;
     parameter SIGNED = 0;
 
@@ -29,17 +29,17 @@ module movingAvg_tb;
         .enable(enable),
         .reset(reset),
         .data_in(data_in),
-        .input_valid(input_valid),
+        .input_strobe(input_valid),
         .data_out(data_out),
-        .output_valid(output_valid)
+        .output_strobe(output_valid)
     );
 
     wire signed [DATA_WIDTH-1:0] odata;
     wire ovalid;
-    movingAvg #(
+    movAvg #(
         .WIDTH(DATA_WIDTH),
         .WINDOW(1<<WINDOW_SHIFT)) 
-    u_movingAvg (
+    u_movAvg (
         .clock(clock),
         .reset(reset),
         .idata(data_in),
@@ -116,8 +116,8 @@ module movingAvg_tb;
 
     // Monitor the outputs
     initial begin
-        $dumpfile("movingAvg.vcd");        
-        $dumpvars(0, movingAvg_tb); 
+        $dumpfile("movAvg.vcd");        
+        $dumpvars(0, movAvg_tb); 
         $monitor("At time %t: data_in = %d, data_out = %d, output_valid = %b",
                  $time, data_in, data_out, output_valid);
     end

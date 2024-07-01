@@ -14,7 +14,14 @@
 			"Basic/Math/Advance/Complex",
 			"Basic/Math/Advance/FFT/Flow",
 			"Apply/Comm/FEC",
-			"Basic/Math/Advance/Mean.v"
+			"Basic/Math/Advance/Mean.v",
+			"Basic/Math/Advance/Complex/cordic.v",
+			"Basic/Math/Advance/Differ.v",
+			"Basic/Math/Advance/PhaseAcc.v",
+			"Basic/Math/Advance/Sort3.v",
+			"Apply/Comm/Filter/movAvg.v",
+			"Basic/Math/FixedPoint/divider.v",
+			"Basic/Math/Advance/Complex/phase.v"
 		]
 	}
 }

@@ -1,0 +1,175 @@
+$date
+   Mon Jul  1 20:41:37 2024
+$end
+$version
+  2018.3
+$end
+$timescale
+  1ps
+$end
+$scope module Sort3_tb $end
+$var reg 1 ! clock $end
+$var reg 1 " reset $end
+$var reg 8 # data1 [7:0] $end
+$var reg 8 $ data2 [7:0] $end
+$var reg 8 % data3 [7:0] $end
+$var wire 8 & max_data [7:0] $end
+$var wire 8 ' mid_data [7:0] $end
+$var wire 8 ( min_data [7:0] $end
+$scope module uut $end
+$var wire 1 ) clock $end
+$var wire 1 * reset $end
+$var wire 8 + data1 [7:0] $end
+$var wire 8 , data2 [7:0] $end
+$var wire 8 - data3 [7:0] $end
+$var reg 8 . max_data [7:0] $end
+$var reg 8 / mid_data [7:0] $end
+$var reg 8 0 min_data [7:0] $end
+$var parameter 32 1 WIDTH [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+0"
+b0 #
+b0 $
+b0 %
+b0 &
+b0 '
+b0 (
+0)
+0*
+b0 +
+b0 ,
+b0 -
+b0 .
+b0 /
+b0 0
+b1000 1
+$end
+#5000
+1!
+1)
+#10000
+0!
+0)
+#15000
+1!
+1"
+1)
+1*
+#20000
+0!
+0)
+#25000
+1!
+0"
+b1010 #
+b101 $
+b1111 %
+b1111 &
+b1010 '
+b101 (
+1)
+0*
+b1010 +
+b101 ,
+b1111 -
+b1111 .
+b1010 /
+b101 0
+#30000
+0!
+0)
+#35000
+1!
+b10100 #
+b11001 $
+b11110 %
+b11110 &
+b11001 '
+b10100 (
+1)
+b10100 +
+b11001 ,
+b11110 -
+b11110 .
+b11001 /
+b10100 0
+#40000
+0!
+0)
+#45000
+1!
+b100011 #
+b11110 $
+b11001 %
+b100011 &
+b11110 '
+b11001 (
+1)
+b100011 +
+b11110 ,
+b11001 -
+b100011 .
+b11110 /
+b11001 0
+#50000
+0!
+0)
+#55000
+1!
+b110010 #
+b110010 $
+b110010 %
+b110010 &
+b110010 '
+b110010 (
+1)
+b110010 +
+b110010 ,
+b110010 -
+b110010 .
+b110010 /
+b110010 0
+#60000
+0!
+0)
+#65000
+1!
+b101101 #
+b101101 $
+b101000 %
+b101101 &
+b101101 '
+b101000 (
+1)
+b101101 +
+b101101 ,
+b101000 -
+b101101 .
+b101101 /
+b101000 0
+#70000
+0!
+0)
+#75000
+1!
+b0 #
+b11111111 $
+b10000000 %
+b11111111 &
+b10000000 '
+b0 (
+1)
+b0 +
+b11111111 ,
+b10000000 -
+b11111111 .
+b10000000 /
+b0 0
+#80000
+0!
+0)
