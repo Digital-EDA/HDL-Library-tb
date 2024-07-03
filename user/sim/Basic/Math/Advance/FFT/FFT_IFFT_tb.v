@@ -1,16 +1,25 @@
 `timescale 1ns/100ps
 
-`define ireal "/home/icer/Project/library/user/data/FFT/test/in/real.vec"
-`define iimag "/home/icer/Project/library/user/data/FFT/test/in/imag.vec"
-`define oreal "/home/icer/Project/library/user/data/FFT/test/out/oreal.vec"
-`define oimag "/home/icer/Project/library/user/data/FFT/test/out/oimag.vec"
+`define win 1
+
+`ifdef win
+    `define ireal "d:/project/ASIC/FFT_IFFT_IP/user/sim/test/in/real.vec"
+    `define iimag "d:/project/ASIC/FFT_IFFT_IP/user/sim/test/in/imag.vec"
+    `define oreal "d:/project/ASIC/FFT_IFFT_IP/user/sim/test/out/real.vec"
+    `define oimag "d:/project/ASIC/FFT_IFFT_IP/user/sim/test/out/imag.vec"
+`else
+    `define ireal "/home/project/ASIC/FFT_IFFT_IP/user/sim/test/in/real.vec"
+    `define iimag "/home/project/ASIC/FFT_IFFT_IP/user/sim/test/in/imag.vec"
+    `define oreal "/home/project/ASIC/FFT_IFFT_IP/user/sim/test/out/real.vec"
+    `define oimag "/home/project/ASIC/FFT_IFFT_IP/user/sim/test/out/imag.vec"
+`endif
 
 module FFT_IFFT_tb();
 
     localparam FFT_IFFT = 0;
-    localparam SCALE_FACTOR = 2;
+    localparam SCALE_KCOE = 0;
     localparam FFT_STAGE = 6;
-    localparam CPMULT_DLY = 2;
+    localparam BUFLY_MODE = 1;
     localparam DATA_WIDTH = 16;
     localparam FFT_MAX = 1<<FFT_STAGE;
 
@@ -18,8 +27,6 @@ module FFT_IFFT_tb();
     reg  rstn = 0;
 
     reg  ien = 0;
-    reg  [DATA_WIDTH-1:0] iReal = 0;
-    reg  [DATA_WIDTH-1:0] iImag = 0;
 
     wire oen;
     wire [DATA_WIDTH-1:0] oReal;
@@ -37,38 +44,35 @@ module FFT_IFFT_tb();
             #10 iclk = ~iclk;
     end
 
-    initial begin
-        ien = 1'b0;
-        #1125 ien = 1'b1;
-    end
-
     integer oreal, oimag;
     initial begin
-        oreal  = $fopen(`oreal);
+        oreal = $fopen(`oreal);
         oimag = $fopen(`oimag);
     end
 
-    integer index = 0;
     initial begin
-        $readmemh(`ireal, Ireal_r);
-        $readmemh(`iimag, Iimag_r);
-        #1092 
-        repeat(1) begin
-            for(index=0; index<511; index=index+1) begin
-                #20
-                iReal <= Ireal_r[index];
-                iImag <= Iimag_r[index];
-            end
+        ien = 1'b0;
+        $readmemb(`ireal, Ireal_r);
+        $readmemb(`iimag, Iimag_r);
+        #50
+        ien = 1'b1;
+    end
+
+    reg  [FFT_STAGE-1:0]  index = 0;
+    wire [DATA_WIDTH-1:0] iReal = Ireal_r[index];
+    wire [DATA_WIDTH-1:0] iImag = Iimag_r[index];
+    always @(posedge iclk) begin
+        if (ien) begin
+            index <= index + 1;
         end
-        #40 ien = 0;
     end
 
     FFT_IFFT #(
         .FFT_IFFT(FFT_IFFT),
         .ORDERING(1),
-        .SCALE_FACTOR(SCALE_FACTOR),
+        .SCALE_KCOE(SCALE_KCOE),
         .TOTAL_STEP(FFT_STAGE),
-        .CPMULT_DLY(CPMULT_DLY),
+        .BUFLY_MODE(BUFLY_MODE),
         .DATA_WIDTH(DATA_WIDTH)) 
     fft_ifft_ins (
         .iclk(iclk),
@@ -150,7 +154,7 @@ module FFT_IFFT_tb();
     // end
 
     initial begin
-        $dumpfile("/home/icer/Project/library/user/sim/Apply/DSP/FFT/IFFT.vcd");        
+        $dumpfile("FFT_IFFT_tb.vcd");        
         $dumpvars(0, FFT_IFFT_tb); 
         #30000 $finish();
     end

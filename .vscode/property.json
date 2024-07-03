@@ -21,7 +21,9 @@
 			"Basic/Math/Advance/Sort3.v",
 			"Apply/Comm/Filter/movAvg.v",
 			"Basic/Math/FixedPoint/divider.v",
-			"Basic/Math/Advance/Complex/phase.v"
+			"Basic/Math/Advance/Complex/phase.v",
+			"Basic/Math/FixedPoint/quant.v",
+			"Basic/Source/DDS.v"
 		]
 	}
 }
