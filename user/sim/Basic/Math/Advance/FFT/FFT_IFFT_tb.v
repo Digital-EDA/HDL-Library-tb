@@ -16,73 +16,86 @@
 
 module FFT_IFFT_tb();
 
-    localparam FFT_IFFT = 0;
-    localparam SCALE_KCOE = 0;
-    localparam FFT_STAGE = 6;
-    localparam BUFLY_MODE = 1;
+    localparam FFT_IFFT   = 0;
+    localparam SCALE_KCOE = 1;
+    localparam TOTAL_STEP = 5;
+    localparam BUFLY_MODE = 0;
+    localparam TWIDD_MODE = 1;
     localparam DATA_WIDTH = 16;
-    localparam FFT_MAX = 1<<FFT_STAGE;
+    localparam FFT_MAX = 1<<TOTAL_STEP;
+    localparam MAIN_FRE = 100; //unit MHz
 
-    reg  iclk = 0;
+    reg  iclk = 1;
     reg  rstn = 0;
 
-    reg  ien = 0;
+    reg  [DATA_WIDTH-1:0] Ireal_r [511:0];
+    reg  [DATA_WIDTH-1:0] Iimag_r [511:0];
 
-    wire oen;
-    wire [DATA_WIDTH-1:0] oReal;
-    wire [DATA_WIDTH-1:0] oImag;
+    reg  [10:0]  index;
+    wire [DATA_WIDTH-1:0] iReal = Ireal_r[index];
+    wire [DATA_WIDTH-1:0] iImag = Iimag_r[index];
 
-    reg [DATA_WIDTH-1:0] Ireal_r [511:0];
-    reg [DATA_WIDTH-1:0] Iimag_r [511:0];
+    always begin
+        #(500/MAIN_FRE) iclk <= ~iclk;
+    end
 
-    initial	begin		
-        iclk <= 0;
-        rstn <= 0;
-        #20 rstn <= 1;
-
-        forever
-            #10 iclk = ~iclk;
+    always begin
+        #50 rstn <= 1;
     end
 
     integer oreal, oimag;
     initial begin
         oreal = $fopen(`oreal);
         oimag = $fopen(`oimag);
-    end
-
-    initial begin
-        ien = 1'b0;
         $readmemb(`ireal, Ireal_r);
         $readmemb(`iimag, Iimag_r);
-        #50
-        ien = 1'b1;
     end
 
-    reg  [FFT_STAGE-1:0]  index = 0;
-    wire [DATA_WIDTH-1:0] iReal = Ireal_r[index];
-    wire [DATA_WIDTH-1:0] iImag = Iimag_r[index];
-    always @(posedge iclk) begin
-        if (ien) begin
-            index <= index + 1;
+    reg ien;
+    always @(posedge iclk or negedge rstn) begin
+        if (~rstn) begin
+            ien <= 0;
+        end
+        else begin
+            if (index >= 63) begin
+                ien <= 0;
+            end else begin
+                ien <= 1;
+            end
         end
     end
 
+    always @(posedge iclk or negedge rstn) begin
+        if (~rstn) begin
+            index <= 0;
+        end
+        else begin
+            if (ien) begin
+                index <= index + 1;
+            end
+        end
+    end
+
+    wire oen;
+    wire [DATA_WIDTH-1:0] oReal;
+    wire [DATA_WIDTH-1:0] oImag;
     FFT_IFFT #(
         .FFT_IFFT(FFT_IFFT),
         .ORDERING(1),
         .SCALE_KCOE(SCALE_KCOE),
-        .TOTAL_STEP(FFT_STAGE),
+        .TOTAL_STEP(TOTAL_STEP),
         .BUFLY_MODE(BUFLY_MODE),
+        .TWIDD_MODE(TWIDD_MODE),
         .DATA_WIDTH(DATA_WIDTH)) 
     fft_ifft_ins (
         .iclk(iclk),
         .rstn(rstn),
+        .ien(ien),
         .iReal(iReal),
         .iImag(iImag),
-        .ien(ien),
+        .oen(oen),
         .oReal(oReal),
-        .oImag(oImag),
-        .oen(oen)
+        .oImag(oImag)
     );
 
     // wire fft_ready;
@@ -156,7 +169,7 @@ module FFT_IFFT_tb();
     initial begin
         $dumpfile("FFT_IFFT_tb.vcd");        
         $dumpvars(0, FFT_IFFT_tb); 
-        #30000 $finish();
+        #2000 $finish();
     end
 
 endmodule
