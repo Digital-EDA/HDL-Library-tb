@@ -1,4 +1,4 @@
-
+`timescale 1 ns / 1 ns
 module shiftTaps_tb();
 
     parameter DATA_WIDTH = 32;
@@ -13,14 +13,35 @@ module shiftTaps_tb();
     end
 
     always begin
-        #50 sys_rst <= 0;
+        #45 sys_rst <= 0;
     end
 
-    always @(posedge sys_clk) begin
-        if (sys_rst) 
+    // always @(posedge sys_clk) begin
+    //     if (sys_rst) 
+    //         data <= 0;
+    //     else      
+    //         data <= data + 1;
+    // end
+
+    reg ivalid;
+    always @(posedge sys_clk or posedge sys_rst) begin
+        if (sys_rst) begin
+            ivalid <= 0;
+        end
+        else begin
+            ivalid <= 1;
+        end
+    end
+
+    always @(posedge sys_clk or posedge sys_rst) begin
+        if (sys_rst) begin
             data <= 0;
-        else      
-            data <= data + 1;
+        end
+        else begin
+            if (ivalid) begin
+                data <= data + 1;
+            end
+        end
     end
 
     //Instance 
@@ -29,12 +50,12 @@ module shiftTaps_tb();
     
     shiftTaps #(
         .WIDTH 	( DATA_WIDTH     ),
-        .SHIFT 	( 2             ))
+        .SHIFT 	( 1             ))
     u_shiftTaps(
-        .clock    	( sys_clk     ),
+        .clock    	( sys_clk   ),
         .reset    	( sys_rst   ),
 
-        .ivalid   	( ~sys_rst  ),
+        .ivalid   	( ivalid    ),
         .shiftin  	( data      ),
 
         .ovalid   	( ovalid    ),
@@ -42,45 +63,19 @@ module shiftTaps_tb();
     );
     
     // outports wire
-    wire [DATA_WIDTH-1:0] 	odata;
-    
-    delay #(
-        .WIDTH 	( DATA_WIDTH  ),
-        .DELAY 	( 32         ))
-    u_delay(
-        .clock 	( sys_clk  ),
-        .reset 	( sys_rst  ),
-        .idata 	( data  ),
-        .odata 	( odata  )
-    );
-    
-    // outports wire
     wire [(DATA_WIDTH-1):0] 	data_out;
     wire                    	output_valid;
 
-    delay_sample #(
-        .DATA_WIDTH  	( DATA_WIDTH  ),
-        .DELAY_SHIFT 	( 5   ))
-    u_delay_sample(
-        .clock        	( sys_clk        ),
-        .enable       	( ~sys_rst       ),
-        .reset        	( sys_rst        ),
-        .data_in      	( data           ),
-        .input_valid  	( sys_clk       ),
-        .data_out     	( data_out       ),
-        .output_valid 	( output_valid   )
-    );
-
     always @(posedge sys_clk) begin
-        if (~sys_rst) begin
-            $strobe("ivalid:%d\tshiftin:%d\t\tovalid:%d\tshiftout:%d", ~sys_rst, $signed(data), ovalid, $signed(shiftout));
+        if (ivalid) begin
+            $strobe("ivalid:%d\tshiftin:%d\t\tovalid:%d\tshiftout:%d", u_shiftTaps.ivalid, $signed(u_shiftTaps.shiftin), u_shiftTaps.ovalid, $signed(u_shiftTaps.shiftout));
         end
     end
 
     initial begin            
-        $dumpfile("shiftTaps.vcd");        
+        $dumpfile("/home/icer/Project/library/user/sim/Basic/Memory/SRAM/Shift/shiftTaps/shiftTaps.vcd");        
         $dumpvars(0, shiftTaps_tb);    
-        #50000 $finish;
+        #500 $finish;
     end
 
 

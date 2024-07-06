@@ -1,6 +1,6 @@
 `timescale 1ns/100ps
 
-`define win 1
+// `define win 1
 
 `ifdef win
     `define ireal "d:/project/ASIC/FFT_IFFT_IP/user/sim/test/in/real.vec"
@@ -8,32 +8,25 @@
     `define oreal "d:/project/ASIC/FFT_IFFT_IP/user/sim/test/out/real.vec"
     `define oimag "d:/project/ASIC/FFT_IFFT_IP/user/sim/test/out/imag.vec"
 `else
-    `define ireal "/home/project/ASIC/FFT_IFFT_IP/user/sim/test/in/real.vec"
-    `define iimag "/home/project/ASIC/FFT_IFFT_IP/user/sim/test/in/imag.vec"
-    `define oreal "/home/project/ASIC/FFT_IFFT_IP/user/sim/test/out/real.vec"
-    `define oimag "/home/project/ASIC/FFT_IFFT_IP/user/sim/test/out/imag.vec"
+    `define ireal "/home/icer/Project/ASICs/FFT_IFFT_IP/user/sim/test/in/real.vec"
+    `define iimag "/home/icer/Project/ASICs/FFT_IFFT_IP/user/sim/test/in/imag.vec"
+    `define oreal "/home/icer/Project/library/user/data/FFT/test/out/real0.vec"
+    `define oimag "/home/icer/Project/library/user/data/FFT/test/out/imag0.vec"
 `endif
 
 module FFT_IFFT_tb();
 
     localparam FFT_IFFT   = 0;
-    localparam SCALE_KCOE = 1;
+    localparam SCALE_KCOE = 0;
     localparam TOTAL_STEP = 5;
-    localparam BUFLY_MODE = 0;
-    localparam TWIDD_MODE = 1;
+    localparam BUFLY_MODE = 1;
+    localparam TWIDD_MODE = 0;
     localparam DATA_WIDTH = 16;
     localparam FFT_MAX = 1<<TOTAL_STEP;
     localparam MAIN_FRE = 100; //unit MHz
 
     reg  iclk = 1;
     reg  rstn = 0;
-
-    reg  [DATA_WIDTH-1:0] Ireal_r [511:0];
-    reg  [DATA_WIDTH-1:0] Iimag_r [511:0];
-
-    reg  [10:0]  index;
-    wire [DATA_WIDTH-1:0] iReal = Ireal_r[index];
-    wire [DATA_WIDTH-1:0] iImag = Iimag_r[index];
 
     always begin
         #(500/MAIN_FRE) iclk <= ~iclk;
@@ -42,6 +35,13 @@ module FFT_IFFT_tb();
     always begin
         #50 rstn <= 1;
     end
+
+    reg  [DATA_WIDTH-1:0] Ireal_r [511:0];
+    reg  [DATA_WIDTH-1:0] Iimag_r [511:0];
+
+    reg  [10:0]  index;
+    wire [DATA_WIDTH-1:0] iReal = Ireal_r[index];
+    wire [DATA_WIDTH-1:0] iImag = Iimag_r[index];
 
     integer oreal, oimag;
     initial begin
@@ -167,7 +167,7 @@ module FFT_IFFT_tb();
     // end
 
     initial begin
-        $dumpfile("FFT_IFFT_tb.vcd");        
+        $dumpfile("/home/icer/Project/library/user/sim/Basic/Math/Advance/FFT/FFT_IFFT.vcd");        
         $dumpvars(0, FFT_IFFT_tb); 
         #2000 $finish();
     end

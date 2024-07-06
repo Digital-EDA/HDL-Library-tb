@@ -1,9 +1,10 @@
 # 仿真参数设置
 SIM_VERSION:= v0.3
 SIM_PATH:= ${PRJ_PATH}/SIM${SIM_VERSION}
-# SIM_FILE:= ${USR_PATH}/sim/tb_file/top_tb.f
-SIM_FILE:= ${USR_PATH}/sim/Apply/DSP/FFT/FFT_IFFT.f
-# SIM_FILE:= ${USR_PATH}/sim/tb_file/Flow_FFT_IFFT/fft_ifft_tb.f
+# SIM_FILE:= /home/icer/Project/library/user/sim/Basic/Memory/SRAM/Shift/shiftTaps/shiftTaps.f
+# SIM_FILE:= ${USR_PATH}/sim/basic.f
+SIM_FILE:= /home/icer/Project/library/user/sim/Apply/Comm/FEC/viterbi.f
+# SIM_FILE:= /home/icer/Project/library/user/sim/Basic/Math/Advance/FFT/FFT_IFFT.f
 SIM_NAME:= FFT_IFFT
 
 SIM_ARGE:= -f ${SIM_FILE}
@@ -13,6 +14,7 @@ SIM_ARGE+= +v2k # 是使VCS兼容verilog 2001以前的标准
 SIM_ARGE+= -debug_all # 用于产生debug所需的文件
 SIM_ARGE+= +vcs+initreg+random
 SIM_ARGE+= +notimingcheck
+# SIM_ARGE+= -xprop
 SIM_ARGE+= -Mupdate # 增量编译
 SIM_ARGE+= -ucli # 使用用户命令行进行仿真调试
 # SIM_ARGE+= -gui
