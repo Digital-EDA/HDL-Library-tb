@@ -1,6 +1,6 @@
 module axilite_uart_tb();
     reg             clock           ;
-    reg             async_resetn    ;
+    reg             resetn          ;
     reg     [15:0]  s_axi_awaddr    ;
     reg             s_axi_awvalid   ;
     wire            s_axi_awready   ;
@@ -33,7 +33,7 @@ module axilite_uart_tb();
         .BAUD_RATE      (115200)
     ) dut (
         .clock          (clock)         , 
-        .async_resetn   (async_resetn)  ,
+        .resetn         (resetn)        ,
 
         .s_axi_awaddr   (s_axi_awaddr)  ,
         .s_axi_awvalid  (s_axi_awvalid) ,
@@ -71,7 +71,7 @@ module axilite_uart_tb();
     
 
     initial begin
-        async_resetn    =   1'b0    ;
+        resetn          =   1'b0    ;
               
         s_axi_awaddr    =   16'h0   ;
         s_axi_awvalid   =   1'b0    ;
@@ -84,7 +84,7 @@ module axilite_uart_tb();
         s_axi_rready    =   1'b0    ;
 
         #1500
-        async_resetn    =   1'b1    ;
+        resetn          =   1'b1    ;
         s_axi_bready    =   1'b1    ;
 
         #1500                       
@@ -98,8 +98,8 @@ module axilite_uart_tb();
     //  发起写请求
     //  写地址通道
     //  s_axi_awvalid
-    always_ff @(posedge clock, negedge async_resetn) begin
-        if(!async_resetn) begin
+    always_ff @(posedge clock, negedge resetn) begin
+        if(!resetn) begin
             s_axi_awvalid <= 0;
         end else if(start_write) begin
             s_axi_awvalid <= 1;
@@ -109,8 +109,8 @@ module axilite_uart_tb();
         end
     end
     //  s_axi_awaddr
-    always_ff @(posedge clock, negedge async_resetn) begin
-        if(!async_resetn) begin
+    always_ff @(posedge clock, negedge resetn) begin
+        if(!resetn) begin
             s_axi_awaddr <= 16'd0;
         end else if(start_write) begin
             s_axi_awaddr <= 16'd4;
@@ -118,8 +118,8 @@ module axilite_uart_tb();
     end
     //  写数据通道
     //  s_axi_wdata
-    always_ff @(posedge clock, negedge async_resetn) begin
-        if(!async_resetn) begin
+    always_ff @(posedge clock, negedge resetn) begin
+        if(!resetn) begin
             s_axi_wdata <= 0;
         end else if(s_axi_awvalid && s_axi_awready) begin 
             // 写地址通道完成
@@ -127,8 +127,8 @@ module axilite_uart_tb();
         end
     end
     //  s_axi_wvalid
-    always_ff @(posedge clock, negedge async_resetn) begin
-        if(!async_resetn) begin
+    always_ff @(posedge clock, negedge resetn) begin
+        if(!resetn) begin
             s_axi_wvalid <= 0;
         end else if(s_axi_awvalid && s_axi_awready) begin 
             // 写地址结束，开始写数据，写数据写地址可同时进行
@@ -140,8 +140,8 @@ module axilite_uart_tb();
     end
     //  写响应通道
     //  s_axi_bready
-    always_ff @(posedge clock, negedge async_resetn) begin
-        if(!async_resetn) begin
+    always_ff @(posedge clock, negedge resetn) begin
+        if(!resetn) begin
             s_axi_bready <= 0;
         end else if(s_axi_awvalid && s_axi_awready) begin // 写地址通道结束后可提前拉高
             s_axi_bready <= 1;
@@ -152,8 +152,8 @@ module axilite_uart_tb();
 
     //  发起读请求
     //  start_read
-    // always_ff @(posedge clock, negedge async_resetn)
-    // if(!async_resetn)
+    // always_ff @(posedge clock, negedge resetn)
+    // if(!resetn)
     //     start_read <= 0;
     // else if(s_axi_bresp == 2'b00 && s_axi_bvalid && s_axi_bready)
     //     start_read <= 1;
@@ -170,8 +170,8 @@ module axilite_uart_tb();
 
     //  读地址通道
     //  s_axi_arvalid
-    always_ff @(posedge clock, negedge async_resetn) begin
-        if(!async_resetn) begin
+    always_ff @(posedge clock, negedge resetn) begin
+        if(!resetn) begin
             s_axi_arvalid <= 0;
         end else if(start_read) begin
             s_axi_arvalid <= 1;
@@ -181,8 +181,8 @@ module axilite_uart_tb();
         end
     end
     //  s_axi_araddr
-    always_ff @(posedge clock, negedge async_resetn) begin
-        if(!async_resetn) begin
+    always_ff @(posedge clock, negedge resetn) begin
+        if(!resetn) begin
             s_axi_araddr <= 0;
         end else if(start_read) begin
             s_axi_araddr <= 16'd0;
@@ -190,21 +190,23 @@ module axilite_uart_tb();
     end
     //  读数据通道
     //  s_axi_rready
-    always_ff @(posedge clock, negedge async_resetn) begin
-        if(!async_resetn) begin
+    always_ff @(posedge clock, negedge resetn) begin
+        if(!resetn) begin
             s_axi_rready <= 0;
         end else if(s_axi_arvalid && s_axi_arready) begin    
-            //读地址通道结束后，拉高RREADY以准备接收数据
+            // 读地址通道结束后，拉高RREADY以准备接收数据
             s_axi_rready <= 1;
-        end else if(s_axi_rready && s_axi_rvalid) begin                   //读数据完成
+        end else if(s_axi_rready && s_axi_rvalid) begin                   
+            // 读数据完成
             s_axi_rready <= 0;
         end
     end
     //  rd_data
-    always @(posedge clock, negedge async_resetn) begin
-        if(!async_resetn) begin
+    always @(posedge clock, negedge resetn) begin
+        if(!resetn) begin
             rd_data <= 0;
-        end else if(s_axi_rvalid && s_axi_rready) begin  //同时为高，可读取数据
+        end else if(s_axi_rvalid && s_axi_rready) begin  
+            // 同时为高，可读取数据
             rd_data <= s_axi_rdata;
             $strobe("%d",rd_data);
         end
