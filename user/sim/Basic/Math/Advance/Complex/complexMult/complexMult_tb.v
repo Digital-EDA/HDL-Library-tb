@@ -11,27 +11,7 @@ module complexMult_tb();
     reg [15:0] b_i;
     reg [15:0] b_q;
     reg input_valid;
-
-    // Outputs
-    wire [31:0] p_i;
-    wire [31:0] p_q;
-    wire output_valid;
-
-    // Instantiate the DUT (Device Under Test)
-    complex_mult dut (
-        .clock(clock),
-        .enable(enable),
-        .reset(reset),
-        .a_i(a_i),
-        .a_q(a_q),
-        .b_i(b_i),
-        .b_q(b_q),
-        .input_valid(input_valid),
-        .p_i(p_i),
-        .p_q(p_q),
-        .output_valid(output_valid)
-    );
-
+    
     wire 	ovalid;
     wire [31:0]	result_r;
     wire [31:0]	result_i;

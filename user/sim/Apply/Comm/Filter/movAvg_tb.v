@@ -15,25 +15,6 @@ module movAvg_tb;
     reg signed [DATA_WIDTH-1:0] data_in;
     reg input_valid;
 
-    // Outputs
-    wire signed [DATA_WIDTH-1:0] data_out;
-    wire output_valid;
-
-    // Instantiate the DUT (Device Under Test)
-    moving_avg #(
-        .DATA_WIDTH(DATA_WIDTH),
-        .WINDOW_SHIFT(WINDOW_SHIFT),
-        .SIGNED(SIGNED)) 
-    u_moving_avg (
-        .clock(clock),
-        .enable(enable),
-        .reset(reset),
-        .data_in(data_in),
-        .input_strobe(input_valid),
-        .data_out(data_out),
-        .output_strobe(output_valid)
-    );
-
     wire signed [DATA_WIDTH-1:0] odata;
     wire ovalid;
     movAvg #(
@@ -117,9 +98,7 @@ module movAvg_tb;
     // Monitor the outputs
     initial begin
         $dumpfile("movAvg.vcd");        
-        $dumpvars(0, movAvg_tb); 
-        $monitor("At time %t: data_in = %d, data_out = %d, output_valid = %b",
-                 $time, data_in, data_out, output_valid);
+        $dumpvars(0, movAvg_tb);
     end
 
 endmodule

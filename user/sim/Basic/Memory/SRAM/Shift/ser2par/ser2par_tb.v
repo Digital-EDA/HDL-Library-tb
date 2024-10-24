@@ -29,21 +29,6 @@ module ser2par_tb();
         .odata(odata)
     );
 
-    // outports wire
-    wire [7:0] 	byte_out;
-    wire       	output_valid;
-    
-    bits_to_bytes u_bits_to_bytes(
-        .clock        	( clock         ),
-        .enable       	( enable        ),
-        .reset        	( reset         ),
-        .bit_in       	( idata         ),
-        .input_strobe  	( clock        ),
-        .byte_out     	( byte_out      ),
-        .output_strobe 	( output_valid  )
-    );
-    
-
     // 时钟生成
     always #5 clock = ~clock; // 10ns 时钟周期
 

@@ -26,22 +26,6 @@ module mean_tb();
         .ovalid(output_valid)
     );
 
-    wire [15:0]	cout;
-    wire 	output_strobe;
-
-    calc_mean u_calc_mean(
-        //ports
-        .clock         		( clock         		),
-        .enable        		( enable        		),
-        .reset         		( reset         		),
-        .a             		( a             		),
-        .b             		( b             		),
-        .sign          		( 0          		),
-        .input_strobe  		( input_valid  		),
-        .c             		( cout             		),
-        .output_strobe 		( output_strobe 		)
-    );
-
 
     // Clock generation
     always #5 clock = ~clock; // 10ns clock period

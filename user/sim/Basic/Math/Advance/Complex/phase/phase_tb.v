@@ -10,25 +10,9 @@ module phase_tb;
     reg signed [DATA_WIDTH-1:0] in_i;
     reg signed [DATA_WIDTH-1:0] in_q;
     reg input_strobe;
-    wire signed [15:0] xphase;
+
+    wire 	           ovalid;
     wire signed [15:0] phase;
-    wire output_strobe;
-
-    // Instantiate the phase module
-    xphase #(
-        .DATA_WIDTH(DATA_WIDTH)
-    ) uut (
-        .clock(clock),
-        .reset(reset),
-        .enable(enable),
-        .in_i(in_i),
-        .in_q(in_q),
-        .input_strobe(input_strobe),
-        .phase(xphase),
-        .output_strobe(output_strobe)
-    );
-
-    wire 	ovalid;
 
     phase #(
         .WIDTH 		( DATA_WIDTH 	))

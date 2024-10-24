@@ -1,6 +1,6 @@
 `timescale 1ns/100ps
 
-// `define win 1
+`define win 1
 
 `ifdef win
     `define ireal "d:/project/ASIC/FFT_IFFT_IP/user/sim/test/in/real.vec"
@@ -16,9 +16,9 @@
 
 module FFT_IFFT_tb();
 
-    localparam FFT_IFFT   = 0;
+    localparam FFT_IFFT   = 1;
     localparam SCALE_KCOE = 0;
-    localparam TOTAL_STEP = 5;
+    localparam TOTAL_STEP = 6;
     localparam BUFLY_MODE = 1;
     localparam TWIDD_MODE = 0;
     localparam DATA_WIDTH = 16;
@@ -139,19 +139,19 @@ module FFT_IFFT_tb();
     //     .event_data_out_channel_halt(event_data_out_channel_halt)
     // );
 
-    // wire [15:0] ifft_ore;
-    // wire [15:0] ifft_oim;
-    // wire 	o_sync;
+    wire [15:0] ifft_ore;
+    wire [15:0] ifft_oim;
+    wire 	o_sync;
 
-    // ifftmain u_ifftmain(
-    //     //ports
-    //     .i_clk    		( iclk    		        ),
-    //     .i_reset  		( ~rstn  		        ),
-    //     .i_ce     		( ien     		        ),
-    //     .i_sample 		( {iReal, iImag}        ),
-    //     .o_result 		( {ifft_ore, ifft_oim}  ),
-    //     .o_sync   		( o_sync   		        )
-    // );
+    ifftmain u_ifftmain(
+        //ports
+        .i_clk    		( iclk    		        ),
+        .i_reset  		( ~rstn  		        ),
+        .i_ce     		( ien     		        ),
+        .i_sample 		( {iReal, iImag}        ),
+        .o_result 		( {ifft_ore, ifft_oim}  ),
+        .o_sync   		( o_sync   		        )
+    );
 
     always @(posedge iclk) begin
         if (rstn & oen) begin

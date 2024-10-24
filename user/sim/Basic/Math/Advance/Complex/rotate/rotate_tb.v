@@ -12,42 +12,6 @@ module rotate_tb;
     reg signed [15:0] phase;
     reg input_valid;
 
-    // Outputs
-    wire [31:0]  xrot_data;
-    wire [ROTATE_LEN_SHIFT-1:0] xrot_addr;
-    wire signed [15:0] xout_i;
-    wire signed [15:0] xout_q;
-    wire xoutput_valid;
-
-    // Instantiate the rotate module
-    xrotate #(
-        .ROTATE_LEN_SHIFT(ROTATE_LEN_SHIFT),
-        .ROTATE_SCALE_SHIFT(ROTATE_SCALE_SHIFT)) 
-    u_xrotate (
-        .clock(clock),
-        .enable(enable),
-        .reset(reset),
-        .in_i(in_i),
-        .in_q(in_q),
-        .phase(phase),
-        .input_valid(input_valid),
-        .rot_addr(xrot_addr),
-        .rot_data(xrot_data),
-        .out_i(xout_i),
-        .out_q(xout_q),
-        .output_valid(xoutput_valid)
-    );
-
-    rot_lut rot_lut_inst (
-        .clka(clock),
-        .addra(xrot_addr),
-        .douta(xrot_data),
-
-        .clkb(clock),
-        .addrb(xrot_addr),
-        .doutb()
-    );
-
     wire 	ovalid;
     wire [15:0]	out_i;
     wire [15:0]	out_q;

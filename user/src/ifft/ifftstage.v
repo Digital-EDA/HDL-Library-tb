@@ -79,7 +79,7 @@ module	fftstage(i_clk, i_reset, i_ce, i_sync, i_data, o_data, o_sync);
 	parameter		CKPCE = 1;
 	// The COEFFILE parameter contains the name of the file containing the
 	// FFT twiddle factors
-	parameter	COEFFILE="cmem_64.hex";
+	parameter	COEFFILE = 64;
 
 `ifdef	VERILATOR
 	parameter [0:0] ZERO_ON_IDLE = 1'b0;
@@ -111,31 +111,88 @@ module	fftstage(i_clk, i_reset, i_ce, i_sync, i_data, o_data, o_sync);
 	// cmem[i] = { (2^(CWIDTH-2)) * cos(2*pi*i/(2^LGWIDTH)),
 	//		(2^(CWIDTH-2)) * sin(2*pi*i/(2^LGWIDTH)) };
 	//
-	reg	[(2*CWIDTH-1):0]	cmem [0:((1<<LGSPAN)-1)];
-`ifdef	FORMAL
-// Let the formal tool pick the coefficients
-`else
-	initial	$readmemh(COEFFILE,cmem);
-
-`endif
+	wire	[(2*CWIDTH-1):0]	cmem [0:((1<<LGSPAN)-1)];
+	// initial	$readmemh(COEFFILE,cmem);
+    generate 
+        if(COEFFILE == 8) begin : stage3
+            // stage 3 cmem
+            assign cmem[0] = 'h4000000000;
+            assign cmem[1] = 'h2d4142d414;
+            assign cmem[2] = 'h0000040000;
+            assign cmem[3] = 'hd2bec2d414;
+        end
+        else if(COEFFILE == 16) begin : stage4
+            // stage 4 cmem
+            assign cmem[0] = 'h4000000000;
+            assign cmem[1] = 'h3b20d187de;
+            assign cmem[2] = 'h2d4142d414;
+            assign cmem[3] = 'h187de3b20d;
+            assign cmem[4] = 'h0000040000;
+            assign cmem[5] = 'he78223b20d;
+            assign cmem[6] = 'hd2bec2d414;
+            assign cmem[7] = 'hc4df3187de;
+        end
+        else if(COEFFILE == 32) begin : stage5
+            // stage 5 cmem
+            assign cmem[0]  = 'h4000000000;
+            assign cmem[1]  = 'h3ec530c7c6;
+            assign cmem[2]  = 'h3b20d187de;
+            assign cmem[3]  = 'h3536d238e7;
+            assign cmem[4]  = 'h2d4142d414;
+            assign cmem[5]  = 'h238e73536d;
+            assign cmem[6]  = 'h187de3b20d;
+            assign cmem[7]  = 'h0c7c63ec53;
+            assign cmem[8]  = 'h0000040000;
+            assign cmem[9]  = 'hf383a3ec53;
+            assign cmem[10] = 'he78223b20d;
+            assign cmem[11] = 'hdc7193536d;
+            assign cmem[12] = 'hd2bec2d414;
+            assign cmem[13] = 'hcac93238e7;
+            assign cmem[14] = 'hc4df3187de;
+            assign cmem[15] = 'hc13ad0c7c6;
+        end
+        else if(COEFFILE == 64) begin : stage6
+            // stage 6 cmem
+            assign cmem[0]  = 'h4000000000;
+            assign cmem[1]  = 'h3fb120645f;
+            assign cmem[2]  = 'h3ec530c7c6;
+            assign cmem[3]  = 'h3d3e812940;
+            assign cmem[4]  = 'h3b20d187de;
+            assign cmem[5]  = 'h387161e2b6;
+            assign cmem[6]  = 'h3536d238e7;
+            assign cmem[7]  = 'h317902899e;
+            assign cmem[8]  = 'h2d4142d414;
+            assign cmem[9]  = 'h2899e31790;
+            assign cmem[10] = 'h238e73536d;
+            assign cmem[11] = 'h1e2b638716;
+            assign cmem[12] = 'h187de3b20d;
+            assign cmem[13] = 'h129403d3e8;
+            assign cmem[14] = 'h0c7c63ec53;
+            assign cmem[15] = 'h0645f3fb12;
+            assign cmem[16] = 'h0000040000;
+            assign cmem[17] = 'hf9ba13fb12;
+            assign cmem[18] = 'hf383a3ec53;
+            assign cmem[19] = 'hed6c03d3e8;
+            assign cmem[20] = 'he78223b20d;
+            assign cmem[21] = 'he1d4a38716;
+            assign cmem[22] = 'hdc7193536d;
+            assign cmem[23] = 'hd766231790;
+            assign cmem[24] = 'hd2bec2d414;
+            assign cmem[25] = 'hce8702899e;
+            assign cmem[26] = 'hcac93238e7;
+            assign cmem[27] = 'hc78ea1e2b6;
+            assign cmem[28] = 'hc4df3187de;
+            assign cmem[29] = 'hc2c1812940;
+            assign cmem[30] = 'hc13ad0c7c6;
+            assign cmem[31] = 'hc04ee0645f;
+        end
+    endgenerate
 
 	reg	[(LGSPAN):0]		iaddr;
 	reg	[(2*IWIDTH-1):0]	imem	[0:((1<<LGSPAN)-1)];
-    integer i;
-    initial begin
-       for (i = 0; i<(1<<LGSPAN); i=i+1) begin
-            imem[i] = 0;
-        end
-    end
 
 	reg	[LGSPAN:0]		oaddr;
 	reg	[(2*OWIDTH-1):0]	omem	[0:((1<<LGSPAN)-1)];
-    integer m;
-    initial begin
-       for (m = 0; m<(1<<LGSPAN); m=m+1) begin
-            omem[m] = 0;
-        end
-    end
 
 	initial wait_for_sync = 1'b1;
 	initial iaddr = 0;
@@ -295,156 +352,4 @@ module	fftstage(i_clk, i_reset, i_ce, i_sync, i_data, o_data, o_sync);
 	if (i_ce)
 		o_data <= (!oaddr[LGSPAN]) ? ob_a : pre_ovalue;
 
-`ifdef	FORMAL
-	// An arbitrary processing delay from butterfly input to
-	// butterfly output(s)
-	(* anyconst *) reg	[LGSPAN:0]	f_mpydelay;
-	always @(*)
-		assume(f_mpydelay > 1);
-
-	reg	f_past_valid;
-	initial	f_past_valid = 1'b0;
-	always @(posedge i_clk)
-		f_past_valid <= 1'b1;
-
-	always @(posedge i_clk)
-	if ((!f_past_valid)||($past(i_reset)))
-	begin
-		assert(iaddr == 0);
-		assert(wait_for_sync);
-		assert(o_sync == 0);
-		assert(oaddr == 0);
-		assert(!b_started);
-		assert(!o_sync);
-	end
-
-	/////////////////////////////////////////
-	//
-	// Formally verify the input half, from the inputs to this module
-	// to the inputs of the butterfly
-	//
-	/////////////////////////////////////////
-	//
-	// Let's  verify a specific set of inputs
-	(* anyconst *)	reg	[LGSPAN:0]	f_addr;
-	reg	[2*IWIDTH-1:0]			f_left, f_right;
-	wire	[LGSPAN:0]			f_next_addr;
-
-	always @(posedge i_clk)
-	if ((!$past(i_ce))&&(!$past(i_ce,2))&&(!$past(i_ce,3))&&(!$past(i_ce,4)))
-	assume(!i_ce);
-
-	always @(*)
-		assume(f_addr[LGSPAN]==1'b0);
-
-	assign	f_next_addr = f_addr + 1'b1;
-
-	always @(posedge i_clk)
-	if ((i_ce)&&(iaddr[LGSPAN:0] == f_addr))
-		f_left <= i_data;
-
-	always @(*)
-	if (wait_for_sync)
-		assert(iaddr == 0);
-
-	wire	[LGSPAN:0]	f_last_addr = iaddr - 1'b1;
-
-	always @(posedge i_clk)
-	if ((!wait_for_sync)&&(f_last_addr >= { 1'b0, f_addr[LGSPAN-1:0]}))
-		assert(f_left == imem[f_addr[LGSPAN-1:0]]);
-
-	always @(posedge i_clk)
-	if ((i_ce)&&(iaddr == { 1'b1, f_addr[LGSPAN-1:0]}))
-		f_right <= i_data;
-
-	always @(posedge i_clk)
-	if ((i_ce)&&(!wait_for_sync)&&(f_last_addr == { 1'b1, f_addr[LGSPAN-1:0]}))
-	begin
-		assert(ib_a == f_left);
-		assert(ib_b == f_right);
-		assert(ib_c == cmem[f_addr[LGSPAN-1:0]]);
-	end
-
-	/////////////////////////////////////////
-	//
-	// Formally verify the output half, from the output of the butterfly
-	// to the outputs of this module
-	//
-	/////////////////////////////////////////
-	reg	[2*OWIDTH-1:0]	f_oleft, f_oright;
-	reg	[LGSPAN:0]	f_oaddr;
-	wire	[LGSPAN:0]	f_oaddr_m1 = f_oaddr - 1'b1;
-
-	always @(*)
-		f_oaddr = iaddr - f_mpydelay + {1'b1,{(LGSPAN-1){1'b0}}};
-
-	assign	f_oaddr_m1 = f_oaddr - 1'b1;
-
-	reg	f_output_active;
-	initial	f_output_active = 1'b0;
-	always @(posedge i_clk)
-	if (i_reset)
-		f_output_active <= 1'b0;
-	else if ((i_ce)&&(ob_sync))
-		f_output_active <= 1'b1;
-
-	always @(*)
-		assert(f_output_active == b_started);
-
-	always @(*)
-	if (wait_for_sync)
-		assert(!f_output_active);
-
-	always @(*)
-	if (f_output_active)
-		assert(oaddr == f_oaddr);
-	else
-		assert(oaddr == 0);
-
-	always @(*)
-	if (wait_for_sync)
-		assume(!ob_sync);
-
-	always @(*)
-		assume(ob_sync == (f_oaddr == 0));
-
-	always @(posedge i_clk)
-	if ((f_past_valid)&&(!$past(i_ce)))
-	begin
-		assume($stable(ob_a));
-		assume($stable(ob_b));
-	end
-
-	initial	f_oleft  = 0;
-	initial	f_oright = 0;
-	always @(posedge i_clk)
-	if ((i_ce)&&(f_oaddr == f_addr))
-	begin
-		f_oleft  <= ob_a;
-		f_oright <= ob_b;
-	end
-
-	always @(posedge i_clk)
-	if ((f_output_active)&&(f_oaddr_m1 >= { 1'b0, f_addr[LGSPAN-1:0]}))
-		assert(omem[f_addr[LGSPAN-1:0]] == f_oright);
-
-	always @(posedge i_clk)
-	if ((i_ce)&&(f_oaddr_m1 == 0)&&(f_output_active))
-		assert(o_sync);
-	else if ((i_ce)||(!f_output_active))
-		assert(!o_sync);
-
-	always @(posedge i_clk)
-	if ((i_ce)&&(f_output_active)&&(f_oaddr_m1 == f_addr))
-		assert(o_data == f_oleft);
-	always @(posedge i_clk)
-	if ((i_ce)&&(f_output_active)&&(f_oaddr[LGSPAN])
-			&&(f_oaddr[LGSPAN-1:0] == f_addr[LGSPAN-1:0]))
-		assert(pre_ovalue == f_oright);
-	always @(posedge i_clk)
-	if ((i_ce)&&(f_output_active)&&(f_oaddr_m1[LGSPAN])
-			&&(f_oaddr_m1[LGSPAN-1:0] == f_addr[LGSPAN-1:0]))
-		assert(o_data == f_oright);
-
-`endif
 endmodule

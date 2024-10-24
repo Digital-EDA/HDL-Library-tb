@@ -100,7 +100,7 @@ module ifftmain(i_clk, i_reset, i_ce,
 	wire		w_s64;
 	wire	[31:0]	w_d64;
 	fftstage	#(IWIDTH,IWIDTH+4,16,5,0,
-			1, 1, "D:/Project/FPGA/Design/TCL_project/Sim/library_sim/user/data/FFT/icmem_64.mem")
+			1, 1, 64)
 		stage_64(i_clk, i_reset, i_ce,
 			(!i_reset), i_sample, w_d64, w_s64);
 
@@ -109,7 +109,7 @@ module ifftmain(i_clk, i_reset, i_ce,
 	wire		w_s32;
 	wire	[31:0]	w_d32;
 	fftstage	#(16,20,16,4,0,
-			1, 1, "D:/Project/FPGA/Design/TCL_project/Sim/library_sim/user/data/FFT/icmem_32.mem")
+			1, 1, 32)
 		stage_32(i_clk, i_reset, i_ce,
 			w_s64, w_d64, w_d32, w_s32);
 
@@ -117,7 +117,7 @@ module ifftmain(i_clk, i_reset, i_ce,
 	wire		w_s16;
 	wire	[31:0]	w_d16;
 	fftstage	#(16,20,16,3,0,
-			1, 1, "D:/Project/FPGA/Design/TCL_project/Sim/library_sim/user/data/FFT/icmem_16.mem")
+			1, 1, 16)
 		stage_16(i_clk, i_reset, i_ce,
 			w_s32, w_d32, w_d16, w_s16);
 
@@ -125,7 +125,7 @@ module ifftmain(i_clk, i_reset, i_ce,
 	wire		w_s8;
 	wire	[31:0]	w_d8;
 	fftstage	#(16,20,16,2,0,
-			1, 1, "D:/Project/FPGA/Design/TCL_project/Sim/library_sim/user/data/FFT/icmem_8.mem")
+			1, 1, 8)
 		stage_8(i_clk, i_reset, i_ce,
 			w_s16, w_d16, w_d8, w_s8);
 

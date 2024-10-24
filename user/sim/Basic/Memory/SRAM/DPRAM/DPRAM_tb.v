@@ -41,29 +41,6 @@ module DPRAM_tb;
         .doutb(doutb)
     );
 
-    wire [WIDTH-1:0]	doa;
-    wire [WIDTH-1:0]	dob;
-
-    ram_2port #(
-        .DWIDTH 		( WIDTH 		),
-        .AWIDTH 		( $clog2(DEPTH) ))
-    u_ram_2port(
-        //ports
-        .clka  		( clka  		),
-        .ena   		( ena   		),
-        .wea   		( wea   		),
-        .addra 		( addra 		),
-        .dia   		( dina   		),
-        .doa   		( doa   		),
-        .clkb  		( clkb  		),
-        .enb   		( enb   		),
-        .web   		( web   		),
-        .addrb 		( addrb 		),
-        .dib   		( dinb   		),
-        .dob   		( dob   		)
-    );
-
-
     // Clock generation
     initial begin
         clka = 0;

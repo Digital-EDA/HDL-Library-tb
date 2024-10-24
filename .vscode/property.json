@@ -1,29 +1,20 @@
 {
-	"TOOL_CHAIN": "xilinx",
-	"Device": "xc7z020clg400-2",
-	"PRJ_NAME": {
-		"FPGA": "template"
+	"toolChain": "xilinx",
+	"prjName": {
+		"PL": "template"
 	},
-	"SOC_MODE": {
-		"soc": "none"
+	"soc": {
+		"core": "none"
 	},
-	"HardwareLIB": {
-		"state": "virtual",
-		"common": [
-			"Basic/Memory/SRAM",
-			"Basic/Math/Advance/Complex",
-			"Basic/Math/Advance/FFT/Flow",
-			"Apply/Comm/FEC",
-			"Basic/Math/Advance/Mean.v",
-			"Basic/Math/Advance/Complex/cordic.v",
-			"Basic/Math/Advance/Differ.v",
-			"Basic/Math/Advance/PhaseAcc.v",
-			"Basic/Math/Advance/Sort3.v",
-			"Apply/Comm/Filter/movAvg.v",
-			"Basic/Math/FixedPoint/divider.v",
-			"Basic/Math/Advance/Complex/phase.v",
-			"Basic/Math/FixedPoint/quant.v",
-			"Basic/Source/DDS.v"
-		]
+	"device": "xc7z020clg400-2",
+	"library": {
+		"state": "remote",
+		"hardware": {
+			"common": [
+				"Apply",
+				"Basic"
+			],
+			"custom": []
+		}
 	}
 }

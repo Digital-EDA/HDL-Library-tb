@@ -22,16 +22,6 @@ module quant_tb;
         .odata(odata)
     );
 
-    wire [7:0] out;
-    Quant u1ut (
-        .clk(clock),
-        .acc_result(idata),
-        .scale(scale),
-        .shift(shift),
-        .zero_point(zero_point),
-        .quant_result(out)
-    );
-
     // Clock generation
     always #5 clock = ~clock;
 

@@ -1,7 +1,7 @@
 module basic_tb();
 
-    parameter DATA_WIDTH = 32;
-    parameter ADDR_WIDTH = 32;
+    parameter DATA_WIDTH = 8;
+    parameter ADDR_WIDTH = 8;
     parameter MAIN_FRE   = 100; //unit MHz
     reg                   sys_clk = 1;
     reg                   sys_rst = 1;

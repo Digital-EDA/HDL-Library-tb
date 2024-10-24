@@ -10,22 +10,6 @@ module divider_tb;
     reg signed [23:0] divisor;
     reg input_valid;
 
-    // Outputs
-    wire signed [31:0] xquotient;
-    wire output_valid;
-
-    // Instantiate the DUT (Device Under Test)
-    xdivider dut (
-        .clock(clock),
-        .reset(reset),
-        .enable(enable),
-        .dividend(dividend),
-        .divisor(divisor),
-        .input_valid(input_valid),
-        .quotient(xquotient),
-        .output_valid(output_valid)
-    );
-
     wire 	            ovalid;
     wire signed [31:0]	quotient;
 

@@ -13,19 +13,19 @@ module cordic_tb;
     wire signed [15:0] phase;
     wire output_strobe;
 
-    // Instantiate the phase module
-    phase #(
-        .DATA_WIDTH(DATA_WIDTH)
-    ) uut (
-        .clock(clock),
-        .reset(reset),
-        .enable(enable),
-        .in_i(in_i),
-        .in_q(in_q),
-        .input_strobe(input_strobe),
-        .phase(phase),
-        .output_strobe(output_strobe)
-    );
+    // // Instantiate the phase module
+    // phase #(
+    //     .DATA_WIDTH(DATA_WIDTH)
+    // ) uut (
+    //     .clock(clock),
+    //     .reset(reset),
+    //     .enable(enable),
+    //     .in_i(in_i),
+    //     .in_q(in_q),
+    //     .input_strobe(input_strobe),
+    //     .phase(phase),
+    //     .output_strobe(output_strobe)
+    // );
 
     wire 	vec_valid;
     wire [31:0]	x_vec;
