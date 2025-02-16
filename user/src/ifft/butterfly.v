@@ -156,6 +156,8 @@ module	butterfly(i_clk, i_reset, i_ce, i_coef, i_left, i_right, i_aux,
 	output	wire	[(2*OWIDTH-1):0] o_left, o_right;
 	output	reg	o_aux;
 
+// `define	FORMAL
+
 `ifdef	FORMAL
 	localparam	F_LGDEPTH = (AUXLEN > 64) ? 7
 			: (AUXLEN > 32) ? 6

@@ -42,7 +42,12 @@ module basic_tb();
         end
         else begin
             if (~sys_rst) begin
-                data <= data + 1;
+                if (data == 10) begin
+                    data <= 0;
+                end
+                else begin
+                    data <= data + 1;
+                end
             end
         end
     end
@@ -66,12 +71,12 @@ module basic_tb();
     always @(posedge sys_clk) begin
         if (~sys_rst) begin
             $display("$display :\tivalid:%d\tdata:%d", ~sys_rst, $signed(data));
-            $strobe("$strobe :\tivalid:%d\tdata:%d", ~sys_rst, $signed(data));
+            // $strobe("$strobe :\tivalid:%d\tdata:%d", ~sys_rst, $signed(data));
         end
     end
 
     initial begin
-        $dumpfile("/home/icer/Project/library/user/sim/basic.vcd");        
+        $dumpfile("basic.vcd");        
         $dumpvars(0, basic_tb);    
         #500 $finish;
     end

@@ -51,7 +51,23 @@ module accuml_tb;
         add_sub = 0; // Add operation
         #10;
         clr = 0;
+        #500;
+
+        // Test case 1: Clear and add operation
+        clr = 1;
+        D = 16'd5000;
+        add_sub = 0; // Add operation
         #10;
+        clr = 0;
+        #500;
+
+        // Test case 1: Clear and add operation
+        clr = 1;
+        D = 16'd2000;
+        add_sub = 0; // Add operation
+        #10;
+        clr = 0;
+        #500 $finish();;
     end
 
     initial begin
