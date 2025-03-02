@@ -49,8 +49,9 @@ initial begin
    $fsdbDumpvars();
 end
 
-
-
-
+initial begin
+   $dumpfile("hw.vcd");
+   $dumpvars;
+end
 
 endmodule
